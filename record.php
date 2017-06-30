@@ -12,8 +12,11 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value'])){
   if($isData >0){
    $uid;
     echo "1";
-   
-   print_r ($data);
+   print_r ($data); 
+   $array_ = json_decode(json_encode($data[0]),true);
+   print_r ($array_);
+   $array__ = json_decode(json_encode($array_[0]),true);
+   print_r ($array__);
   }else{
     echo "2.1";
     //Post New Data
