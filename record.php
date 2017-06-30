@@ -11,18 +11,21 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value'])){
   $isData=sizeof($data);
   if($isData >0){
    $uid;
+    echo "1";
    foreach($data as $rec){
     $uid = $rec->_id;
    }
    echo $uid;
   }else{
+    echo "2.1";
     //Post New Data
     $newData = json_encode(
       array(
         'id' => $id,
-        '$type'=> $type
+        'type'=> $type
       )
     );
+    echo "2.2";
     $opts = array(
       'http' => array(
           'method' => "POST",
@@ -30,6 +33,7 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value'])){
           'content' => $newData
        )
     );
+    echo "2.3";
     $context = stream_context_create($opts);
     $returnValue = file_get_contents($url,false,$context);  
   }
