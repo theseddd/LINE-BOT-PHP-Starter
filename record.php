@@ -12,10 +12,8 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value'])){
   if($isData >0){
    $uid;
     echo "1";
-   foreach($data as $rec){
-    $uid = $rec->_id;
-   }
-   echo $uid;
+   
+   echo $data;
   }else{
     echo "2.1";
     //Post New Data
