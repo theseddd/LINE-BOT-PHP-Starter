@@ -13,7 +13,7 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value'])){
    $uid;
     echo "1";
    
-   echo $data[0];
+   print_r ($data);
   }else{
     echo "2.1";
     //Post New Data
