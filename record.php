@@ -29,7 +29,7 @@ if(isset($_GET['id'])&&isset($_GET['type'])){
   echo "OK";
 }else{
   echo "No data";
-
+}
 
 
 
