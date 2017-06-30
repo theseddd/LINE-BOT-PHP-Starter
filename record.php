@@ -17,7 +17,7 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value'])){
    $array_ = json_decode(json_encode($data[0]),true);
    print_r ($array_);
     echo "1.3";
-   $array__ = json_decode(json_encode($array_[0]),true);
+   $array__ = json_decode(json_encode($array_['$oid']),true);
    print_r ($array__);
     
   }else{
