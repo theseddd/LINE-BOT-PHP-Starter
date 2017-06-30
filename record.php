@@ -19,8 +19,8 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value'])){
     //Post New Data
     $newData = json_encode(
       array(
-        'question' => $id,
-        'answer'=> $type
+        'id' => $id,
+        '$type'=> $type
       )
     );
     $opts = array(
