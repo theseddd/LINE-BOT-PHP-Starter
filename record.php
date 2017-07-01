@@ -27,7 +27,7 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value'])){
    // echo "1.3";
    $array__ = (string)$array_['_id']['$oid'];
    $check = (string)$array_['work'];
-   print_r ($check);
+   //print_r ($check);
     //echo "1.4";
     //Post New Data
 
