@@ -93,7 +93,7 @@ function sent($messages) {
 if(isset($_GET['bot'])){
  if(isset($_GET['message'])){
  
-  $message = $_GET['message'];
+  $messages = $_GET['message'];
   node_sent($messages);
   
  }else{
