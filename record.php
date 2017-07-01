@@ -56,7 +56,7 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value1'])){
     $newData = json_encode(
       array(
         'id' => $id,
-        'name' => "",
+        'name' => "-",
         'type'=> $type,
         'time' => $time,
         'value1' => $value1,
