@@ -26,7 +26,7 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value1'])){
    $array_ = json_decode(json_encode($data[0]),true);
    $array__ = (string)$array_['_id']['$oid'];
    $check = (string)$array_['work'];
-
+   $name = (string)$array_['name'];
     if($check == "1"){
       $working = "1";
     }
@@ -35,6 +35,7 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value1'])){
       array(
         '_id' => array('$oid' => $array__),
         'id' => $id,
+        'name' => $name,
         'type'=> $type,
         'time' => $time,
         'value1' => $value1,
@@ -55,6 +56,7 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value1'])){
     $newData = json_encode(
       array(
         'id' => $id,
+        'name' => "",
         'type'=> $type,
         'time' => $time,
         'value1' => $value1,
