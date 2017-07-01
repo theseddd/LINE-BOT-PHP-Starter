@@ -65,6 +65,9 @@ if(isset($_GET['bot'])){
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
  if($_msg == 'อุณหภูมิ'||$_msg == 'อุณหภูมิเท่าไหร'||strpos($_msg, 'ตรวจสอบ')!== false||strpos($_msg, 'หลอดไฟ')!== false||strpos($_msg, 'แอร์')!== false){
   if (strpos($_msg, 'ตรวจสอบ') !== false) {
+   $message = array();
+     $message[0] = 'aaaaa';
+   sent($message);
    if(strpos($_msg, 'ทั้งหมด') !== false) {
      $nurl = 'https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'';
      $njson = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"question":"*"}');
