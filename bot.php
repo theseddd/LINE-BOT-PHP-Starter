@@ -370,11 +370,13 @@ if(isset($_GET['bot'])){
         $context = stream_context_create($opts);
         $returnValue = file_get_contents($url,false,$context); 
         $message = array();
-        $message[0] = 'ทำการเปลี่ยนชื่ออุปกรณ์ให้แล้วนะคะ';      
+        $message[0] = 'ทำการเปลี่ยนชื่ออุปกรณ์ให้แล้วนะคะ'; 
+        sent($message);
       }else{
        $message = array();
        $message[0] = 'ไม่สามารถเปลี่ยนชื่ออุปกรณ์ได้ค่ะ';  
        $message[1] = 'เพราะไม่พบอุปกรณ์ของ '._id.' ค่ะ';  
+       sent($message);
       }
     }
   }else{
