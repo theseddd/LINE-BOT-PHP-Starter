@@ -34,6 +34,8 @@ function sent($messages) {
  $farrPostData['replyToken'] = $farrJson['events'][0]['replyToken'];
  $farrPostData['messages'][0]['type'] = "text";
  $farrPostData['messages'][0]['text'] = $messages;  
+ $farrPostData['messages'][1]['type'] = "text";
+ $farrPostData['messages'][1]['text'] = 'จบ';  
  $channel = curl_init();
  curl_setopt($channel, CURLOPT_URL,$fstrUrl);
  curl_setopt($channel, CURLOPT_HEADER, false);
@@ -132,12 +134,10 @@ if(isset($_GET['bot'])){
       sent($rec->answer);
      }
     }else{
-      sent('ฉันไม่รู้จักคำนี้ค่ะ!!');
-      sent('คุณสามารถสอนได้เพียงพิมพ์: สอน[คำถาม|คำตอบ]');     
+      sent('ฉันไม่รู้จักคำนี้ค่ะ!! คุณสามารถสอนได้เพียงพิมพ์: สอน[คำถาม|คำตอบ]');  
     }
   }
- }
- 
+ } 
 } 
 
 
