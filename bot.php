@@ -205,6 +205,30 @@ if(isset($_GET['bot'])){
       $message[$y] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบอุณหภูมิค่ะ';
       $y++;
      } 
+     $json2 = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"lamp"}');
+     $data2 = json_decode($json2);
+     $isData=sizeof($data2);
+     if($isData>0){
+      foreach($data2 as $rec){      
+       $tid = $rec->id;
+       $tname = $rec->name;
+       $tvalue1 = $rec->value1;
+       if((string)$tvalue1 == "1"){
+        $tvalue1 = "เปิด";
+       }else{
+        $tvalue1 = "ปิด";
+       }
+       if($tname=="-"){
+        $tname = $tid;
+       }
+       $ttime = $rec->time;
+       $message[$y] = "หลอดไฟของ ".(string)$tname." สถานะ ".(string)$tvalue1."ค่ะ (".(string)$ttime.")";
+       $y++;
+      }
+     }else{
+      $message[$y] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบหลอดไฟค่ะ';
+      $y++;
+     } 
      sent($message);    
   }
   
