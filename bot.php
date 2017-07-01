@@ -182,18 +182,18 @@ if(isset($_GET['bot'])){
      sent($message);    
   }
   if(strpos($_msg, 'ตรวจสอบทั้งหมด')!== false){
-     $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"temp"}');
-     $data = json_decode($json);
-     $isData=sizeof($data);
+     $tjson = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"temp"}');
+     $tdata = json_decode($tjson);
+     $tisData=sizeof($tdata);
      $message = array();
      $y=0;
-     if($isData>0){
-      foreach($data as $rec){      
-       $tid = $rec->id;
-       $tname = $rec->name;
-       $tvalue1 = $rec->value1;
-       $tvalue2 = $rec->value2;
-       $ttime = $rec->time;
+     if($tisData>0){
+      foreach($tdata as $trec){      
+       $tid = $trec->id;
+       $tname = $trec->name;
+       $tvalue1 = $trec->value1;
+       $tvalue2 = $trec->value2;
+       $ttime = $trec->time;
        if($tname=="-"){
         $tname = $tid;
        }
@@ -204,50 +204,50 @@ if(isset($_GET['bot'])){
       $message[$y] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบอุณหภูมิค่ะ';
       $y++;
      } 
-     $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"lamp"}');
-     $data = json_decode($json);
-     $isData=sizeof($data);
+     $ljson = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"lamp"}');
+     $ldata = json_decode($ljson);
+     $lisData=sizeof($ldata);
      $message = array();
-     if($isData>0){
-      foreach($data as $rec){      
-       $tid = $rec->id;
-       $tname = $rec->name;
-       $tvalue1 = $rec->value1;
-       if((string)$tvalue1 == "1"){
-        $tvalue1 = "เปิด";
+     if($lisData>0){
+      foreach($ldata as $lrec){      
+       $lid = $lrec->id;
+       $lname = $lrec->name;
+       $lvalue1 = $lrec->value1;
+       if((string)$lvalue1 == "1"){
+        $lvalue1 = "เปิด";
        }else{
-        $tvalue1 = "ปิด";
+        $lvalue1 = "ปิด";
        }
-       if($tname=="-"){
-        $tname = $tid;
+       if($lname=="-"){
+        $lname = $lid;
        }
-       $ttime = $rec->time;
-       $message[$y] = "หลอดไฟของ ".(string)$tname." สถานะ ".(string)$tvalue1."ค่ะ (".(string)$ttime.")";
+       $ltime = $rec->time;
+       $message[$y] = "หลอดไฟของ ".(string)$lname." สถานะ ".(string)$lvalue1."ค่ะ (".(string)$ltime.")";
        $y++;
       }
      }else{
       $message[$y] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบหลอดไฟค่ะ';
       $y++;
      } 
-     $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"air"}');
-     $data = json_decode($json);
-     $isData=sizeof($data);
+     $ajson = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"air"}');
+     $adata = json_decode($ajson);
+     $aisData=sizeof($adata);
      $message = array();
-     if($isData>0){
-      foreach($data as $rec){      
-       $tid = $rec->id;
-       $tname = $rec->name;
-       $tvalue1 = $rec->value1;
-       if((string)$tvalue1 == "1"){
-        $tvalue1 = "เปิด";
+     if($aisData>0){
+      foreach($adata as $arec){      
+       $aid = $arec->id;
+       $aname = $arec->name;
+       $avalue1 = $arec->value1;
+       if((string)$avalue1 == "1"){
+        $avalue1 = "เปิด";
        }else{
-        $tvalue1 = "ปิด";
+        $avalue1 = "ปิด";
        }
-       if($tname=="-"){
-        $tname = $tid;
+       if($aname=="-"){
+        $aname = $aid;
        }
-       $ttime = $rec->time;
-       $message[$y] = "แอร์ของ ".(string)$tname." สถานะ ".(string)$tvalue1."ค่ะ (".(string)$ttime.")";
+       $atime = $arec->time;
+       $message[$y] = "แอร์ของ ".(string)$aname." สถานะ ".(string)$avalue1."ค่ะ (".(string)$atime.")";
        $y++;
       }
      }else{
