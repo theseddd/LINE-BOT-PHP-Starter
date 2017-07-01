@@ -76,42 +76,9 @@ if(isset($_GET['bot'])){
        $message[$rec] = $rec->answer;
       }
       sent($message);
-     }
-    }
-   }else{
-      $x_tra = str_replace("สอน","", $_msg);
-      $pieces = explode("|", $x_tra);
-      $_question=str_replace("[","",$pieces[0]);
-      $_answer=str_replace("]","",$pieces[1]);
-      //Post New Data
-      $newData = json_encode(
-        array(
-          'question' => $_question,
-          'answer'=> $_answer
-        )
-      );
-      $opts = array(
-        'http' => array(
-            'method' => "POST",
-            'header' => "Content-type: application/json",
-            'content' => $newData
-         )
-      );
-      $context = stream_context_create($opts);
-      $returnValue = file_get_contents($url,false,$context);
-      $message = array();
-      $message[0] = 'ขอบคุณที่สอนนะคะ';
-      sent($message);
-      /*$arrPostData = array();
-      $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-      $arrPostData['messages'][0]['type'] = "text";
-      $arrPostData['messages'][0]['text'] = 'ขอบคุณที่สอนนะคะ';*/
-      
-    }
-  }
- 
- 
- 
+     }    
+   }
+  } 
  }else{
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
   if (strpos($_msg, 'สอน') !== false) {
