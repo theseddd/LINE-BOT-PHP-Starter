@@ -89,7 +89,7 @@ if(isset($_GET['bot'])){
   $arrPostData['messages'][0]['text'] = $message;
   $message = array();
   $message[0] = $message;
-  munti_sent($messages,'lunarismemo')   
+  munti_sent($messages,'lunarismemo');
   
  }else{
 
