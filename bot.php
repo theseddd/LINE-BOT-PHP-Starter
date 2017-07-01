@@ -17,7 +17,23 @@ $url = 'https://api.mlab.com/api/1/databases/line_bot/collections/line_bot?apiKe
 $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/line_bot?apiKey='.$api_key.'&q={"question":"'.$_msg.'"}');
 $data = json_decode($json);
 $isData=sizeof($data);
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function sent($messages) {
+ $arrPostData = array();
+ $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+ $arrPostData['messages'][0]['type'] = "text";
+ $arrPostData['messages'][0]['text'] = $messages;  
+ $channel = curl_init();
+ curl_setopt($channel, CURLOPT_URL,$strUrl);
+ curl_setopt($channel, CURLOPT_HEADER, false);
+ curl_setopt($channel, CURLOPT_POST, true);
+ curl_setopt($channel, CURLOPT_HTTPHEADER, $arrHeader);
+ curl_setopt($channel, CURLOPT_POSTFIELDS, json_encode($arrPostData));
+ curl_setopt($channel, CURLOPT_RETURNTRANSFER,true);
+ curl_setopt($channel, CURLOPT_SSL_VERIFYPEER, false);
+ $result = curl_exec($channel);
+ curl_close ($channel);
+}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 if(isset($_GET['bot'])){
  if(isset($_GET['message'])){
@@ -132,21 +148,6 @@ $result = curl_exec($channel);
 curl_close ($channel);*/
 sent("ทดสอบฟังชั่น");
 
-function sent($messages) {
- $arrPostData = array();
- $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
- $arrPostData['messages'][0]['type'] = "text";
- $arrPostData['messages'][0]['text'] = $messages;  
- $channel = curl_init();
- curl_setopt($channel, CURLOPT_URL,$strUrl);
- curl_setopt($channel, CURLOPT_HEADER, false);
- curl_setopt($channel, CURLOPT_POST, true);
- curl_setopt($channel, CURLOPT_HTTPHEADER, $arrHeader);
- curl_setopt($channel, CURLOPT_POSTFIELDS, json_encode($arrPostData));
- curl_setopt($channel, CURLOPT_RETURNTRANSFER,true);
- curl_setopt($channel, CURLOPT_SSL_VERIFYPEER, false);
- $result = curl_exec($channel);
- curl_close ($channel);
-}
+
 
 ?>
