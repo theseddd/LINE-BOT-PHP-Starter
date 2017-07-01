@@ -25,7 +25,7 @@ function munti_sent($messages,$user) {
  $fcontent = file_get_contents('php://input');
  $farrJson = json_decode($fcontent, true);
  
- $fstrUrl = "https://api.line.me/v2/bot/message/multicast";
+ $fstrUrl = "https://api.line.me/v2/bot/message/push";
  
  $farrHeader = array();
  $farrHeader[] = "Content-Type: application/json";
@@ -89,7 +89,7 @@ if(isset($_GET['bot'])){
   $arrPostData['messages'][0]['text'] = $message;
   $message = array();
   $message[0] = $message;
-  munti_sent($messages,'lunarismemo');
+  munti_sent($messages,"lunarismemo");
   
  }else{
 
