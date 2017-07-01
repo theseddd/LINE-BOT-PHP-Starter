@@ -109,8 +109,14 @@ if(isset($_GET['bot'])){
      $data = json_decode($json);
      $isData=sizeof($data);
      $message = array();
+     $y=0;
      foreach($data as $rec){      
-      $message[$rec] = "อุณหภูมิของ ".$rec->id." คือ ".$rec->value1."C  ความชื้น ".$rec->value2."%";
+      $tid = $rec->id;
+      $tvalue1 = $rec->value1;
+      $tvalue2 = $rec->value2;
+      $ttime = $rec->time;
+      $message[$y] = "อุณหภูมิของ ".(string)$tid." คือ ".(string)$tvalue1."C  ความชื้น ".(string)$tvalue2."% (".(string)$ttime.")";
+      $y++;
      }
      sent($message); 
    
