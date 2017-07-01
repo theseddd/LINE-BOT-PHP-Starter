@@ -34,7 +34,7 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value'])){
         'id' => $id,
         'type'=> $type,
         'time' => $time,
-        'value' => $value
+        'value' => $value        
       )
     );
     //echo "1.5";
@@ -56,7 +56,8 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value'])){
         'id' => $id,
         'type'=> $type,
         'time' => $time,
-        'value' => $value
+        'value' => $value,
+        'work' => "0"
       )
     );
     //echo "2.2";
