@@ -229,6 +229,30 @@ if(isset($_GET['bot'])){
       $message[$y] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบหลอดไฟค่ะ';
       $y++;
      } 
+     $json3 = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"air"}');
+     $data3 = json_decode($json3);
+     $isData3=sizeof($data3);
+     if($isData3>0){
+      foreach($data3 as $rec){      
+       $tid = $rec->id;
+       $tname = $rec->name;
+       $tvalue1 = $rec->value1;
+       if((string)$tvalue1 == "1"){
+        $tvalue1 = "เปิด";
+       }else{
+        $tvalue1 = "ปิด";
+       }
+       if($tname=="-"){
+        $tname = $tid;
+       }
+       $ttime = $rec->time;
+       $message[$y] = "แอร์ของ ".(string)$tname." สถานะ ".(string)$tvalue1."ค่ะ (".(string)$ttime.")";
+       $y++;
+      }
+     }else{
+      $message[$y] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบแอร์ค่ะ';
+      $y++;
+     }
      sent($message);    
   }
   
