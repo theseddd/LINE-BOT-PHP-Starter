@@ -40,7 +40,7 @@ if(isset($_GET['bot'])){
   // follow redirects
   curl_setopt( $chOne, CURLOPT_FOLLOWLOCATION, 1);
   //ADD header array
-  $headers = array( 'Content-type: application/x-www-form-urlencoded', 'Authorization: Bearer '.$strAccessToken, );  // หลังคำว่า Bearer ใส่ line authen code ไป
+  $headers = array( 'Content-type: application/x-www-form-urlencoded', 'Authorization: Bearer 9KexXFutJpVWfiA12ZrAIZunVdn6qH6Vi3mOdVYC9ojtWXSma5jbx14jv9eZebEA0cgEDbSqGYxNsb3NpKpGB+FtCVb8ketT6hmEamLvl9pIyv9UFKDQQkF5N2Zb2e/husUH9dAwX1Yrx4XRm+EuPgdB04t89/1O/w1cDnyilFU=', );  // หลังคำว่า Bearer ใส่ line authen code ไป
   curl_setopt($chOne, CURLOPT_HTTPHEADER, $headers);
   //RETURN
   curl_setopt( $chOne, CURLOPT_RETURNTRANSFER, 1);
