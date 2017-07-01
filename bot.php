@@ -100,7 +100,7 @@ if(isset($_GET['bot'])){
     }
   }else{
 
-    if($isData >0){
+   /* if($isData >0){
      foreach($data as $rec){
       $arrPostData = array();
       $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
@@ -114,12 +114,13 @@ if(isset($_GET['bot'])){
       $arrPostData['messages'][0]['text'] = 'ฉันไม่รู้จักคำนี้ค่ะ!!! คุณสามารถสอนได้เพียงพิมพ์: สอน[คำถาม|คำตอบ]';
      
     }
+    */
   }
  }
  
 } 
 
-$channel = curl_init();
+/*$channel = curl_init();
 curl_setopt($channel, CURLOPT_URL,$strUrl);
 curl_setopt($channel, CURLOPT_HEADER, false);
 curl_setopt($channel, CURLOPT_POST, true);
@@ -128,7 +129,7 @@ curl_setopt($channel, CURLOPT_POSTFIELDS, json_encode($arrPostData));
 curl_setopt($channel, CURLOPT_RETURNTRANSFER,true);
 curl_setopt($channel, CURLOPT_SSL_VERIFYPEER, false);
 $result = curl_exec($channel);
-curl_close ($channel);
+curl_close ($channel);*/
 sent('ทดสอบฟังชั่น');
 
 function sent($messages) {
