@@ -380,7 +380,7 @@ if(isset($_GET['bot'])){
       }
     }
   }else{
-   if($_msg == 'คำสั่งทั้งหมด'){
+   if(strpos($_msg, 'คำสั่งทั้งหมด') !== false){
        $message = array();
        $message[0] = 'คำสั่งที่สามารถใช้ได้ค่ะ';  
        $message[1] = 'สอน[คำถาม|คำตอบ]';  
