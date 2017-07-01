@@ -33,6 +33,7 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value'])){
     /*if(('work' => $data) == "1"){
       $working = "1";
     }*/
+    print_r($data);
     $newData = json_encode(
       array(
         '_id' => array('$oid' => $array__),
