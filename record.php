@@ -30,9 +30,9 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value'])){
     //echo "1.4";
     //Post New Data
     
-    if(('work' => $data) == "1"){
+    /*if(('work' => $data) == "1"){
       $working = "1";
-    }
+    }*/
     $newData = json_encode(
       array(
         '_id' => array('$oid' => $array__),
