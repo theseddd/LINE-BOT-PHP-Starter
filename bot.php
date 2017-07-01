@@ -18,7 +18,37 @@ $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collect
 $data = json_decode($json);
 $isData=sizeof($data);
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+function munti_sent($messages,$user) {
+ $size_msg = sizeof($messages);
+ $fstrAccessToken = "9KexXFutJpVWfiA12ZrAIZunVdn6qH6Vi3mOdVYC9ojtWXSma5jbx14jv9eZebEA0cgEDbSqGYxNsb3NpKpGB+FtCVb8ketT6hmEamLvl9pIyv9UFKDQQkF5N2Zb2e/husUH9dAwX1Yrx4XRm+EuPgdB04t89/1O/w1cDnyilFU=";
+ 
+ $fcontent = file_get_contents('php://input');
+ $farrJson = json_decode($fcontent, true);
+ 
+ $fstrUrl = "https://api.line.me/v2/bot/message/multicast";
+ 
+ $farrHeader = array();
+ $farrHeader[] = "Content-Type: application/json";
+ $farrHeader[] = "Authorization: Bearer {$fstrAccessToken}";
+ $farrPostData = array();
+ $farrPostData['to'] = $user;
+ for ($i = 0; $i < $size_msg; $i++) {
+  $farrPostData['messages'][$i]['type'] = "text";
+  $farrPostData['messages'][$i]['text'] = $messages[$i];  
+ }
+ $channel = curl_init();
+ curl_setopt($channel, CURLOPT_URL,$fstrUrl);
+ curl_setopt($channel, CURLOPT_HEADER, false);
+ curl_setopt($channel, CURLOPT_POST, true);
+ curl_setopt($channel, CURLOPT_HTTPHEADER, $farrHeader);
+ curl_setopt($channel, CURLOPT_POSTFIELDS, json_encode($farrPostData));
+ curl_setopt($channel, CURLOPT_RETURNTRANSFER,true);
+ curl_setopt($channel, CURLOPT_SSL_VERIFYPEER, false);
+ $result = curl_exec($channel);
+ curl_close ($channel);
+ 
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function sent($messages) {
  $size_msg = sizeof($messages);
  $fstrAccessToken = "9KexXFutJpVWfiA12ZrAIZunVdn6qH6Vi3mOdVYC9ojtWXSma5jbx14jv9eZebEA0cgEDbSqGYxNsb3NpKpGB+FtCVb8ketT6hmEamLvl9pIyv9UFKDQQkF5N2Zb2e/husUH9dAwX1Yrx4XRm+EuPgdB04t89/1O/w1cDnyilFU=";
@@ -57,6 +87,10 @@ if(isset($_GET['bot'])){
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = $message;
+  $message = array();
+  $message[0] = 'ขอบคุณที่สอนนะคะ';
+      
+  sent($message);
  }else{
 
 
@@ -106,7 +140,6 @@ if(isset($_GET['bot'])){
       $message = array();
       $message[0] = 'ฉันไม่รู้จักคำนี้ค่ะ!!';
       $message[1] = 'คุณสามารถสอนได้เพียงพิมพ์: สอน[คำถาม|คำตอบ]';
-      $message[2] = $arrJson['events'][0]['replyToken'];
       sent($message);
     }
   }
