@@ -329,26 +329,53 @@ if(isset($_GET['bot'])){
     }else{
       $x_tra = str_replace("เปลี่ยนชื่ออุปกรณ์","", $_msg);
       $pieces = explode("|", $x_tra);
-      $_question=str_replace("[","",$pieces[0]);
-      $_answer=str_replace("]","",$pieces[1]);
+      $_id=str_replace("[","",$pieces[0]);
+      $_name=str_replace("]","",$pieces[1]);
       //Post New Data
-      $newData = json_encode(
-        array(
-          'question' => $_question,
-          'answer'=> $_answer
-        )
-      );
-      $opts = array(
-        'http' => array(
-            'method' => "POST",
-            'header' => "Content-type: application/json",
-            'content' => $newData
-         )
-      );
-      $context = stream_context_create($opts);
-      $returnValue = file_get_contents($url,false,$context);
-      $message = array();
-      $message[0] = 'ขอบคุณที่สอนนะคะ';      
+      $api_key="pTxcx5ycWTLaFNILWW59S9eMdSiDHQrz";
+      $url = 'https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'';
+      $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"id":"'.$_id.'"}');
+      $data = json_decode($json);
+      $isData=sizeof($data);
+      if($isData >0){
+       $uid;
+       $array_ = json_decode(json_encode($data[0]),true);
+       $array__ = (string)$array_['_id']['$oid'];
+       $name = $_name;
+       $id = (string)$array_['name'];
+       $type = (string)$array_['type'];
+       $time = (string)$array_['time'];
+       $value1 = (string)$array_['value1'];
+       $value2 = (string)$array_['value2'];
+       $work = (string)$array_['work'];
+        $newData = json_encode(
+          array(
+            '_id' => array('$oid' => $array__),
+            'id' => $id,
+            'name' => $name,
+            'type'=> $type,
+            'time' => $time,
+            'value1' => $value1,
+            'value2' => $value2,
+            'work' => $work
+          )
+        );
+        $opts = array(
+          'http' => array(
+              'method' => "POST",
+              'header' => "Content-type: application/json",
+              'content' => $newData
+           )
+        );
+        $context = stream_context_create($opts);
+        $returnValue = file_get_contents($url,false,$context); 
+        $message = array();
+        $message[0] = 'ทำการเปลี่ยนชื่ออุปกรณ์ให้แล้วนะคะ';      
+      }else{
+       $message = array();
+       $message[0] = 'ไม่สามารถเปลี่ยนชื่ออุปกรณ์ได้ค่ะ';  
+       $message[1] = 'เพราะไม่พบอุปกรณ์ของ '._id.' ค่ะ';  
+      }
     }
   }else{
    
