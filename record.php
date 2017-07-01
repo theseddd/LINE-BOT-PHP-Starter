@@ -16,7 +16,7 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value'])){
   $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"id":"'.$id.'"}');
   $data = json_decode($json);
   $isData=sizeof($data);
-  $working = "0"
+  $working = "0";
   if($isData >0){
    $uid;
    // echo "1.1";
