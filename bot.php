@@ -118,7 +118,7 @@ if(isset($_GET['bot'])){
       $arrPostData['messages'][0]['text'] = 'ขอบคุณที่สอนนะคะ';
     }
   }else{
-
+   sent('ทดสอบOK');
    /* if($isData >0){
      foreach($data as $rec){
       $arrPostData = array();
@@ -149,7 +149,7 @@ curl_setopt($channel, CURLOPT_RETURNTRANSFER,true);
 curl_setopt($channel, CURLOPT_SSL_VERIFYPEER, false);
 $result = curl_exec($channel);
 curl_close ($channel);*/
-sent("ทดสอบฟังชั่น");
+
 
 
 
