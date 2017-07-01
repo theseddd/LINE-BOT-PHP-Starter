@@ -71,11 +71,12 @@ if(isset($_GET['bot'])){
      $ndata = json_decode($njson);
      $nisData=sizeof($ndata);
      if($nisData >0){
-     $message = array();
-     foreach($ndata as $rec){      
-      $message[$rec] = $rec->answer;
+      $message = array();
+      foreach($ndata as $rec){      
+       $message[$rec] = $rec->answer;
+      }
+      sent($message);
      }
-     sent($message);
     }
    }else{
       $x_tra = str_replace("สอน","", $_msg);
