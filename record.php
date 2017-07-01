@@ -26,11 +26,10 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value'])){
    //print_r ($array_);
    // echo "1.3";
    $array__ = (string)$array_['_id']['$oid'];
-   //print_r ($array__);
+   print_r ($array__);
     //echo "1.4";
     //Post New Data
-    $check = (string)$data['work'];
-    echo ">".$check."<";
+
     /*if(('work' => $data) == "1"){
       $working = "1";
     }*/
