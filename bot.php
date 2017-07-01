@@ -88,10 +88,12 @@ if(isset($_GET['bot'])){
       );
       $context = stream_context_create($opts);
       $returnValue = file_get_contents($url,false,$context);
-      $arrPostData = array();
+      sent('ขอบคุณที่สอนนะคะ');
+      /*$arrPostData = array();
       $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
       $arrPostData['messages'][0]['type'] = "text";
-      $arrPostData['messages'][0]['text'] = 'ขอบคุณที่สอนนะคะ';
+      $arrPostData['messages'][0]['text'] = 'ขอบคุณที่สอนนะคะ';*/
+      
     }
   }
  
@@ -121,28 +123,30 @@ if(isset($_GET['bot'])){
       );
       $context = stream_context_create($opts);
       $returnValue = file_get_contents($url,false,$context);
-      $arrPostData = array();
+      sent('ขอบคุณที่สอนนะคะ');
+      /*$arrPostData = array();
       $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
       $arrPostData['messages'][0]['type'] = "text";
-      $arrPostData['messages'][0]['text'] = 'ขอบคุณที่สอนนะคะ';
+      $arrPostData['messages'][0]['text'] = 'ขอบคุณที่สอนนะคะ';*/
     }
   }else{
-   sent('ทดสอบOK');
-   /* if($isData >0){
+   
+   if($isData >0){
      foreach($data as $rec){
-      $arrPostData = array();
+      sent($rec->answer);
+      /*$arrPostData = array();
       $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
       $arrPostData['messages'][0]['type'] = "text";
-      $arrPostData['messages'][0]['text'] = $rec->answer;
+      $arrPostData['messages'][0]['text'] = $rec->answer;*/
      }
     }else{
-      $arrPostData = array();
+      sent('ฉันไม่รู้จักคำนี้ค่ะ!!! คุณสามารถสอนได้เพียงพิมพ์: สอน[คำถาม|คำตอบ]');
+      /*$arrPostData = array();
       $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
       $arrPostData['messages'][0]['type'] = "text";
-      $arrPostData['messages'][0]['text'] = 'ฉันไม่รู้จักคำนี้ค่ะ!!! คุณสามารถสอนได้เพียงพิมพ์: สอน[คำถาม|คำตอบ]';
+      $arrPostData['messages'][0]['text'] = 'ฉันไม่รู้จักคำนี้ค่ะ!!! คุณสามารถสอนได้เพียงพิมพ์: สอน[คำถาม|คำตอบ]';*/
      
     }
-    */
   }
  }
  
