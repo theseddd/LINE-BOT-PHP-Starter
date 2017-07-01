@@ -29,13 +29,13 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value'])){
    //print_r ($array__);
     //echo "1.4";
     //Post New Data
-    $check = $data['work'];
-    
+    $check = (string)$data['work'];
+    echo ">".$check."<";
     /*if(('work' => $data) == "1"){
       $working = "1";
     }*/
-    print_r($data);
-    echo $check;
+    
+    
     $newData = json_encode(
       array(
         '_id' => array('$oid' => $array__),
