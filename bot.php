@@ -124,10 +124,7 @@ if(isset($_GET['bot'])){
       $arrPostData = array();
       $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
       $arrPostData['messages'][0]['type'] = "text";
-      $arrPostData['messages'][0]['text'] = 'ฉันไม่รู้จักคำนี้ค่ะ!!!';
-      $arrPostData['replyToken'] = $arrJson['events'][1]['replyToken'];
-      $arrPostData['messages'][1]['type'] = "text";
-      $arrPostData['messages'][1]['text'] = 'คุณสามารถสอนได้เพียงพิมพ์: สอน[คำถาม|คำตอบ]';
+      $arrPostData['messages'][0]['text'] = 'ฉันไม่รู้จักคำนี้ค่ะ!!! คุณสามารถสอนได้เพียงพิมพ์: สอน[คำถาม|คำตอบ]';
     }
   }
  }
