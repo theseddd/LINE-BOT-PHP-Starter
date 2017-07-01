@@ -20,6 +20,7 @@ $isData=sizeof($data);
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function sent($messages) {
+ $size_msg = sizeof($messages);
  $fstrAccessToken = "9KexXFutJpVWfiA12ZrAIZunVdn6qH6Vi3mOdVYC9ojtWXSma5jbx14jv9eZebEA0cgEDbSqGYxNsb3NpKpGB+FtCVb8ketT6hmEamLvl9pIyv9UFKDQQkF5N2Zb2e/husUH9dAwX1Yrx4XRm+EuPgdB04t89/1O/w1cDnyilFU=";
  
  $fcontent = file_get_contents('php://input');
@@ -32,10 +33,10 @@ function sent($messages) {
  $farrHeader[] = "Authorization: Bearer {$fstrAccessToken}";
  $farrPostData = array();
  $farrPostData['replyToken'] = $farrJson['events'][0]['replyToken'];
- $farrPostData['messages'][0]['type'] = "text";
- $farrPostData['messages'][0]['text'] = $messages;  
- $farrPostData['messages'][1]['type'] = "text";
- $farrPostData['messages'][1]['text'] = 'จบ';  
+ for ($i = 0; $i < $size_msg; $i++) {
+  $farrPostData['messages'][$i]['type'] = "text";
+  $farrPostData['messages'][$i]['text'] = $messages[$i];  
+ }
  $channel = curl_init();
  curl_setopt($channel, CURLOPT_URL,$fstrUrl);
  curl_setopt($channel, CURLOPT_HEADER, false);
@@ -90,7 +91,9 @@ if(isset($_GET['bot'])){
       );
       $context = stream_context_create($opts);
       $returnValue = file_get_contents($url,false,$context);
-      sent('ขอบคุณที่สอนนะคะ');
+      $message = array();
+      $message[0] = 'ขอบคุณที่สอนนะคะ';
+      sent($message);
       /*$arrPostData = array();
       $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
       $arrPostData['messages'][0]['type'] = "text";
@@ -125,16 +128,23 @@ if(isset($_GET['bot'])){
       );
       $context = stream_context_create($opts);
       $returnValue = file_get_contents($url,false,$context);
-      sent('ขอบคุณที่สอนนะคะ');
+      $message = array();
+      $message[0] = 'ขอบคุณที่สอนนะคะ';
+      sent($message);
     }
   }else{
    
    if($isData >0){
-     foreach($data as $rec){
-      sent($rec->answer);
+     $message = array();
+     foreach($data as $rec){      
+      $message[0] = $rec->answer;
      }
+     sent($message);
     }else{
-      sent('ฉันไม่รู้จักคำนี้ค่ะ!! คุณสามารถสอนได้เพียงพิมพ์: สอน[คำถาม|คำตอบ]');  
+      $message = array();
+      $message[0] = 'ฉันไม่รู้จักคำนี้ค่ะ!!';
+      $message[1] = 'คุณสามารถสอนได้เพียงพิมพ์: สอน[คำถาม|คำตอบ]';
+      sent($message);
     }
   }
  } 
