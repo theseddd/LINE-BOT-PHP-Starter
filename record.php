@@ -19,13 +19,13 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value'])){
   if($isData >0){
    $uid;
    // echo "1.1";
-   print_r ($data); 
+   //print_r ($data); 
     //echo "1.2";
    $array_ = json_decode(json_encode($data[0]),true);
-   print_r ($array_);
+   //print_r ($array_);
    // echo "1.3";
    $array__ = (string)$array_['_id']['$oid'];
-   print_r ($array__);
+   //print_r ($array__);
     //echo "1.4";
     //Post New Data
     $newData = json_encode(
