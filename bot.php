@@ -20,17 +20,26 @@ $isData=sizeof($data);
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function sent($messages) {
+ $fstrAccessToken = "9KexXFutJpVWfiA12ZrAIZunVdn6qH6Vi3mOdVYC9ojtWXSma5jbx14jv9eZebEA0cgEDbSqGYxNsb3NpKpGB+FtCVb8ketT6hmEamLvl9pIyv9UFKDQQkF5N2Zb2e/husUH9dAwX1Yrx4XRm+EuPgdB04t89/1O/w1cDnyilFU=";
  
- $arrPostData = array();
- $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
- $arrPostData['messages'][0]['type'] = "text";
- $arrPostData['messages'][0]['text'] = $messages;  
+ $fcontent = file_get_contents('php://input');
+ $farrJson = json_decode($fcontent, true);
+ 
+ $fstrUrl = "https://api.line.me/v2/bot/message/reply";
+ 
+ $farrHeader = array();
+ $farrHeader[] = "Content-Type: application/json";
+ $farrHeader[] = "Authorization: Bearer {$fstrAccessToken}";
+ $farrPostData = array();
+ $farrPostData['replyToken'] = $farrJson['events'][0]['replyToken'];
+ $farrPostData['messages'][0]['type'] = "text";
+ $farrPostData['messages'][0]['text'] = $messages;  
  $channel = curl_init();
- curl_setopt($channel, CURLOPT_URL,$strUrl);
+ curl_setopt($channel, CURLOPT_URL,$fstrUrl);
  curl_setopt($channel, CURLOPT_HEADER, false);
  curl_setopt($channel, CURLOPT_POST, true);
- curl_setopt($channel, CURLOPT_HTTPHEADER, $arrHeader);
- curl_setopt($channel, CURLOPT_POSTFIELDS, json_encode($arrPostData));
+ curl_setopt($channel, CURLOPT_HTTPHEADER, $farrHeader);
+ curl_setopt($channel, CURLOPT_POSTFIELDS, json_encode($farrPostData));
  curl_setopt($channel, CURLOPT_RETURNTRANSFER,true);
  curl_setopt($channel, CURLOPT_SSL_VERIFYPEER, false);
  $result = curl_exec($channel);
