@@ -18,6 +18,7 @@ $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collect
 $data = json_decode($json);
 $isData=sizeof($data);
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 function sent($messages) {
  $arrPostData = array();
  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
