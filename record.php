@@ -28,13 +28,18 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value'])){
    //print_r ($array__);
     //echo "1.4";
     //Post New Data
+    $working = "0"
+    if($data['work'] == "1"){
+      $working = "1"
+    }
     $newData = json_encode(
       array(
         '_id' => array('$oid' => $array__),
         'id' => $id,
         'type'=> $type,
         'time' => $time,
-        'value' => $value        
+        'value' => $value,
+        'work' => "0"
       )
     );
     //echo "1.5";
@@ -72,7 +77,11 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value'])){
     $context = stream_context_create($opts);
     $returnValue = file_get_contents($url,false,$context);  
   }
-  echo "OK";
+  if($working == "1"){
+    echo "Have_work";
+  }else{
+    echo "OK";
+  }
 }else{
   echo "No data";
 }
