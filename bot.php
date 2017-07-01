@@ -20,6 +20,7 @@ $isData=sizeof($data);
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function sent($messages) {
+ 
  $arrPostData = array();
  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
  $arrPostData['messages'][0]['type'] = "text";
@@ -34,6 +35,7 @@ function sent($messages) {
  curl_setopt($channel, CURLOPT_SSL_VERIFYPEER, false);
  $result = curl_exec($channel);
  curl_close ($channel);
+ 
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 if(isset($_GET['bot'])){
