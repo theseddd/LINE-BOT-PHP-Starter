@@ -67,9 +67,16 @@ if(isset($_GET['bot'])){
   if (strpos($_msg, 'ตรวจสอบ') !== false) {
    if(strpos($_msg, 'ทั้งหมด') !== false) {
      $nurl = 'https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'';
-     $njson = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"id":"'.$id.'"}');
+     $njson = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key);
      $ndata = json_decode($njson);
      $nisData=sizeof($ndata);
+     if($nisData >0){
+     $message = array();
+     foreach($ndata as $rec){      
+      $message[$rec] = $rec->answer;
+     }
+     sent($message);
+    }
    }else{
       $x_tra = str_replace("สอน","", $_msg);
       $pieces = explode("|", $x_tra);
