@@ -96,9 +96,6 @@ if(isset($_GET['bot'])){
   $messages = $_GET['message'];
   node_sent($messages);
   
- }else{
-
-
  }
 }else{
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
@@ -184,7 +181,81 @@ if(isset($_GET['bot'])){
      }
      sent($message);    
   }
-  
+  if(strpos($_msg, 'ตรวจสอบทั้งหมด')!== false){
+     $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"temp"}');
+     $data = json_decode($json);
+     $isData=sizeof($data);
+     $message = array();
+     $y=0;
+     if($isData>0){
+      foreach($data as $rec){      
+       $tid = $rec->id;
+       $tname = $rec->name;
+       $tvalue1 = $rec->value1;
+       $tvalue2 = $rec->value2;
+       $ttime = $rec->time;
+       if($tname=="-"){
+        $tname = $tid;
+       }
+       $message[$y] = "อุณหภูมิของ ".(string)$tname." คือ ".(string)$tvalue1."C  ความชื้น ".(string)$tvalue2."% (".(string)$ttime.")";
+       $y++;
+      }
+     }else{
+      $message[$y] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบอุณหภูมิค่ะ';
+      $y++;
+     } 
+     $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"lamp"}');
+     $data = json_decode($json);
+     $isData=sizeof($data);
+     $message = array();
+     if($isData>0){
+      foreach($data as $rec){      
+       $tid = $rec->id;
+       $tname = $rec->name;
+       $tvalue1 = $rec->value1;
+       if((string)$tvalue1 == "1"){
+        $tvalue1 = "เปิด";
+       }else{
+        $tvalue1 = "ปิด";
+       }
+       if($tname=="-"){
+        $tname = $tid;
+       }
+       $ttime = $rec->time;
+       $message[$y] = "หลอดไฟของ ".(string)$tname." สถานะ ".(string)$tvalue1."ค่ะ (".(string)$ttime.")";
+       $y++;
+      }
+     }else{
+      $message[$y] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบหลอดไฟค่ะ';
+      $y++;
+     } 
+     $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"air"}');
+     $data = json_decode($json);
+     $isData=sizeof($data);
+     $message = array();
+     if($isData>0){
+      foreach($data as $rec){      
+       $tid = $rec->id;
+       $tname = $rec->name;
+       $tvalue1 = $rec->value1;
+       if((string)$tvalue1 == "1"){
+        $tvalue1 = "เปิด";
+       }else{
+        $tvalue1 = "ปิด";
+       }
+       if($tname=="-"){
+        $tname = $tid;
+       }
+       $ttime = $rec->time;
+       $message[$y] = "แอร์ของ ".(string)$tname." สถานะ ".(string)$tvalue1."ค่ะ (".(string)$ttime.")";
+       $y++;
+      }
+     }else{
+      $message[$y] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบแอร์ค่ะ';
+      $y++;
+     }
+     sent($message);    
+  }
   
  }else{
   $message = array();
