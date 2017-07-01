@@ -93,7 +93,7 @@ if(isset($_GET['bot'])){
   
  }else{
   if(strpos($_msg, 'บันทึกผู้ใช้งานใหม่') !== false){
-      $uurl = 'https://api.mlab.com/api/1/databases/line_bot/collections/user?apiKey='.$api_key.'';     
+     /* $uurl = 'https://api.mlab.com/api/1/databases/line_bot/collections/user?apiKey='.$api_key.'';     
       $uisData=sizeof($udata);
       $newData = json_encode(
         array(
@@ -110,7 +110,7 @@ if(isset($_GET['bot'])){
          )
       );
       $context = stream_context_create($opts);
-      $returnValue = file_get_contents($uurl,false,$context);
+      $returnValue = file_get_contents($uurl,false,$context);*/
       $message = array();
       $message[0] = 'ทำการบันทึกเรียบร้อยค่ะ';      
       sent($message);
