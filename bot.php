@@ -300,8 +300,8 @@ if(isset($_GET['bot'])){
    
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
   }else{
-   if (strpos($_msg, 'สอน') !== false) {
-    if (strpos($_msg, 'สอน') !== false) {
+   if (strpos($_msg, 'สอน[') !== false||strpos($_msg, 'เปลี่ยนชื่ออุปกรณ์[') !== false) {
+    if (strpos($_msg, 'สอน[') !== false && strpos($_msg, 'เปลี่ยนชื่ออุปกรณ์[') == false) {
       $x_tra = str_replace("สอน","", $_msg);
       $pieces = explode("|", $x_tra);
       $_question=str_replace("[","",$pieces[0]);
@@ -326,6 +326,29 @@ if(isset($_GET['bot'])){
       $message[0] = 'ขอบคุณที่สอนนะคะ';
       
       sent($message);
+    }else{
+      $x_tra = str_replace("เปลี่ยนชื่ออุปกรณ์","", $_msg);
+      $pieces = explode("|", $x_tra);
+      $_question=str_replace("[","",$pieces[0]);
+      $_answer=str_replace("]","",$pieces[1]);
+      //Post New Data
+      $newData = json_encode(
+        array(
+          'question' => $_question,
+          'answer'=> $_answer
+        )
+      );
+      $opts = array(
+        'http' => array(
+            'method' => "POST",
+            'header' => "Content-type: application/json",
+            'content' => $newData
+         )
+      );
+      $context = stream_context_create($opts);
+      $returnValue = file_get_contents($url,false,$context);
+      $message = array();
+      $message[0] = 'ขอบคุณที่สอนนะคะ';      
     }
   }else{
    
