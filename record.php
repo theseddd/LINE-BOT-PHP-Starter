@@ -31,7 +31,7 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value'])){
     //Post New Data
     
     if(('work' => $data) == "1"){
-      $working = "1"
+      $working = "1";
     }
     $newData = json_encode(
       array(
