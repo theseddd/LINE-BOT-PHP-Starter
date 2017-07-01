@@ -30,6 +30,7 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value'])){
     //echo "1.4";
     //Post New Data
     $check = $data['work'];
+    
     /*if(('work' => $data) == "1"){
       $working = "1";
     }*/
