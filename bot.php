@@ -63,7 +63,7 @@ if(isset($_GET['bot'])){
  }
 }else{
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
- if($_msg == 'อุณหภูมิ'||$_msg == 'อุณหภูมิเท่าไหร'||strpos($_msg, 'ตรวจสอบ')!== false||strpos($_msg, 'หลอดไฟ')!== false||strpos($_msg, 'แอร์')!== false){
+ if(strpos($_msg, 'อุณหภูมิ')!== false||strpos($_msg, 'ตรวจสอบ')!== false||strpos($_msg, 'หลอดไฟ')!== false||strpos($_msg, 'แอร์')!== false){
   
  }else{
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
@@ -91,6 +91,7 @@ if(isset($_GET['bot'])){
       $returnValue = file_get_contents($url,false,$context);
       $message = array();
       $message[0] = 'ขอบคุณที่สอนนะคะ';
+      
       sent($message);
     }
   }else{
@@ -105,6 +106,7 @@ if(isset($_GET['bot'])){
       $message = array();
       $message[0] = 'ฉันไม่รู้จักคำนี้ค่ะ!!';
       $message[1] = 'คุณสามารถสอนได้เพียงพิมพ์: สอน[คำถาม|คำตอบ]';
+      $message[2] = $arrJson['events'][0]['replyToken'];
       sent($message);
     }
   }
