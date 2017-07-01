@@ -18,34 +18,31 @@ $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collect
 $data = json_decode($json);
 $isData=sizeof($data);
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function munti_sent($messages,$user) {
- $size_msg = sizeof($messages);
- $fstrAccessToken = "9KexXFutJpVWfiA12ZrAIZunVdn6qH6Vi3mOdVYC9ojtWXSma5jbx14jv9eZebEA0cgEDbSqGYxNsb3NpKpGB+FtCVb8ketT6hmEamLvl9pIyv9UFKDQQkF5N2Zb2e/husUH9dAwX1Yrx4XRm+EuPgdB04t89/1O/w1cDnyilFU=";
+function node_sent($messages,$user) {
+$strAccessToken = "9KexXFutJpVWfiA12ZrAIZunVdn6qH6Vi3mOdVYC9ojtWXSma5jbx14jv9eZebEA0cgEDbSqGYxNsb3NpKpGB+FtCVb8ketT6hmEamLvl9pIyv9UFKDQQkF5N2Zb2e/husUH9dAwX1Yrx4XRm+EuPgdB04t89/1O/w1cDnyilFU=";
  
- $fcontent = file_get_contents('php://input');
- $farrJson = json_decode($fcontent, true);
+$strUrl = "https://api.line.me/v2/bot/message/push";
  
- $fstrUrl = "https://api.line.me/v2/bot/message/push";
+$arrHeader = array();
+$arrHeader[] = "Content-Type: application/json";
+$arrHeader[] = "Authorization: Bearer {$strAccessToken}";
  
- $farrHeader = array();
- $farrHeader[] = "Content-Type: application/json";
- $farrHeader[] = "Authorization: Bearer {$fstrAccessToken}";
- $farrPostData = array();
- $farrPostData['to'] = $user;
- for ($i = 0; $i < $size_msg; $i++) {
-  $farrPostData['messages'][$i]['type'] = "text";
-  $farrPostData['messages'][$i]['text'] = $messages[$i];  
- }
- $channel = curl_init();
- curl_setopt($channel, CURLOPT_URL,$fstrUrl);
- curl_setopt($channel, CURLOPT_HEADER, false);
- curl_setopt($channel, CURLOPT_POST, true);
- curl_setopt($channel, CURLOPT_HTTPHEADER, $farrHeader);
- curl_setopt($channel, CURLOPT_POSTFIELDS, json_encode($farrPostData));
- curl_setopt($channel, CURLOPT_RETURNTRANSFER,true);
- curl_setopt($channel, CURLOPT_SSL_VERIFYPEER, false);
- $result = curl_exec($channel);
- curl_close ($channel);
+$arrPostData = array();
+$arrPostData['to'] = $user;
+$arrPostData['messages'][0]['type'] = "text";
+$arrPostData['messages'][0]['text'] = "นี้คือการทดสอบ Push Message";
+ 
+ 
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL,$strUrl);
+curl_setopt($ch, CURLOPT_HEADER, false);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $arrHeader);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arrPostData));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+$result = curl_exec($ch);
+curl_close ($ch);
  
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -83,13 +80,7 @@ function sent($messages) {
 if(isset($_GET['bot'])){
  if(isset($_GET['message'])){
   $message = $_GET['message'];
-  $arrPostData = array();
-  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-  $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = $message;
-  $message = array();
-  $message[0] = $message;
-  munti_sent($messages,"Ue5cca733dd1b12980bc07e47bac503c");
+  node_sent($messages,"Ue5cca733dd1b12980bc07e47ba4c503c");
   
  }else{
 
