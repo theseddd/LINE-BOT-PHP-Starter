@@ -380,21 +380,34 @@ if(isset($_GET['bot'])){
       }
     }
   }else{
-   
-   if($isData >0){
-     $message = array();
-     foreach($data as $rec){      
-      $message[0] = $rec->answer;
-     }
-     sent($message);
-    }else{
+   if($_msg == 'คำสั่งทั้งหมด'){
+       $message = array();
+       $message[0] = 'คำสั่งที่สามารถใช้ได้ค่ะ';  
+       $message[1] = 'สอน[คำถาม|คำตอบ]';  
+       $message[2] = 'เปลี่ยนชื่ออุปกรณ์[รหัส|ชื่อใหม่]';  
+       $message[3] = 'ตรวจสอบอุณหภูมิ';  
+       $message[4] = 'ตรวจสอบหลอดไฟ';  
+       $message[5] = 'ตรวจสอบแอร์'; 
+       $message[6] = 'ตรวจสอบทั้งหมด';  
+       sent($message);
+   }else{
+    if($isData >0){
       $message = array();
-    
-      $message[0] = 'ฉันไม่รู้จักคำนี้ค่ะ!!';
-      $message[1] = 'คุณสามารถสอนได้เพียงพิมพ์: สอน[คำถาม|คำตอบ]';
-      //$message[2] = $arrJson['events'][0]['source']['userId'];
+      foreach($data as $rec){      
+       $message[0] = $rec->answer;
+      }
       sent($message);
+    }else{
+       $message = array();
+
+       $message[0] = 'ฉันไม่รู้จักคำนี้ค่ะ!!';
+       $message[1] = 'คุณสามารถสอนได้เพียงพิมพ์: สอน[คำถาม|คำตอบ]';
+       //$message[2] = $arrJson['events'][0]['source']['userId'];
+       sent($message);
     }
+   }
+    
+    
    }
   }
  } 
