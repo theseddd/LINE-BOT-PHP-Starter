@@ -22,34 +22,14 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value'])){
     echo "1.3";
    $array__ = (string)$array_['_id']['$oid'];
    print_r ($array__);
-    echo "1.4";
-    //Post New Data
-    $newData = json_encode(
-      array(
-        '_id' => $array__,
-        'id' => $id,
-        'type'=> $type,
-        'value' => $value
-      )
-    );
-    echo "1.5";
-    $opts = array(
-      'http' => array(
-          'method' => "POST",
-          'header' => "Content-type: application/json",
-          'content' => $newData
-       )
-    );
-    echo "1.6";
-    $context = stream_context_create($opts);
-    $returnValue = file_get_contents($url,false,$context);  
+
   }else{
     echo "2.1";
     //Post New Data
     $newData = json_encode(
       array(
         'id' => $id,
-        'type'=> $type
+        'type'=> $type,
         'value' => $value
       )
     );
