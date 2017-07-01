@@ -342,7 +342,7 @@ if(isset($_GET['bot'])){
        $array_ = json_decode(json_encode($data[0]),true);
        $array__ = (string)$array_['_id']['$oid'];
        $name = $_name;
-       $id = (string)$array_['name'];
+       $id = (string)$array_['id'];
        $type = (string)$array_['type'];
        $time = (string)$array_['time'];
        $value1 = (string)$array_['value1'];
