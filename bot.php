@@ -138,8 +138,10 @@ if(isset($_GET['bot'])){
      sent($message);
     }else{
       $message = array();
+    
       $message[0] = 'ฉันไม่รู้จักคำนี้ค่ะ!!';
       $message[1] = 'คุณสามารถสอนได้เพียงพิมพ์: สอน[คำถาม|คำตอบ]';
+      $message[2] = $arrJson['events'][0]['source']['userId'];
       sent($message);
     }
   }
