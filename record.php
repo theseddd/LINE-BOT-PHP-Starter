@@ -26,7 +26,7 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value'])){
     //Post New Data
     $newData = json_encode(
       array(
-        '_id' => $array__,
+        '_id' => '$oid' => $array__,
         'id' => $id,
         'type'=> $type,
         'value' => $value
