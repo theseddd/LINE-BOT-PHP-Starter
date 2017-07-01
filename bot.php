@@ -124,44 +124,22 @@ if(isset($_GET['bot'])){
       $context = stream_context_create($opts);
       $returnValue = file_get_contents($url,false,$context);
       sent('ขอบคุณที่สอนนะคะ');
-      /*$arrPostData = array();
-      $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-      $arrPostData['messages'][0]['type'] = "text";
-      $arrPostData['messages'][0]['text'] = 'ขอบคุณที่สอนนะคะ';*/
     }
   }else{
    
    if($isData >0){
      foreach($data as $rec){
       sent($rec->answer);
-      /*$arrPostData = array();
-      $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-      $arrPostData['messages'][0]['type'] = "text";
-      $arrPostData['messages'][0]['text'] = $rec->answer;*/
      }
     }else{
-      sent('ฉันไม่รู้จักคำนี้ค่ะ!!! คุณสามารถสอนได้เพียงพิมพ์: สอน[คำถาม|คำตอบ]');
-      /*$arrPostData = array();
-      $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-      $arrPostData['messages'][0]['type'] = "text";
-      $arrPostData['messages'][0]['text'] = 'ฉันไม่รู้จักคำนี้ค่ะ!!! คุณสามารถสอนได้เพียงพิมพ์: สอน[คำถาม|คำตอบ]';*/
-     
+      sent('ฉันไม่รู้จักคำนี้ค่ะ!!');
+      sent('คุณสามารถสอนได้เพียงพิมพ์: สอน[คำถาม|คำตอบ]');     
     }
   }
  }
  
 } 
 
-/*$channel = curl_init();
-curl_setopt($channel, CURLOPT_URL,$strUrl);
-curl_setopt($channel, CURLOPT_HEADER, false);
-curl_setopt($channel, CURLOPT_POST, true);
-curl_setopt($channel, CURLOPT_HTTPHEADER, $arrHeader);
-curl_setopt($channel, CURLOPT_POSTFIELDS, json_encode($arrPostData));
-curl_setopt($channel, CURLOPT_RETURNTRANSFER,true);
-curl_setopt($channel, CURLOPT_SSL_VERIFYPEER, false);
-$result = curl_exec($channel);
-curl_close ($channel);*/
 
 
 
