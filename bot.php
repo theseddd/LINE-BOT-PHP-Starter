@@ -103,6 +103,24 @@ if(isset($_GET['bot'])){
 }else{
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
  if(strpos($_msg, 'อุณหภูมิ')!== false||strpos($_msg, 'ตรวจสอบ')!== false||strpos($_msg, 'หลอดไฟ')!== false||strpos($_msg, 'แอร์')!== false){
+  if(strpos($_msg, 'อุณหภูมิ')!== false){
+     $url = 'https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'';
+     $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"temp"}');
+     $data = json_decode($json);
+     $isData=sizeof($data);
+     $message = array();
+     foreach($data as $rec){      
+      $message[$rec] = "อุณหภูมิของ ".$rec->id." คือ ".$rec->value1."C  ความชื้น ".$rec->value2."%";
+     }
+     sent($message); 
+   
+   
+  }else{
+   
+   
+  }
+  
+  
   
  }else{
   if(strpos($_msg, 'บันทึกผู้ใช้งานใหม่') !== false){
