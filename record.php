@@ -3,11 +3,15 @@ date_default_timezone_set("Asia/Bangkok");
 
 
 
-if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value'])){
+if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value1'])){
   $time = date("d-m-Y H:i");
   $id = (string)$_GET['id'];
   $type = (string)$_GET['type'];
-  $value = (string)$_GET['value'];
+  $value1 = (string)$_GET['value1'];
+  $value2= "";
+  if(isset($_GET['value2'])){
+    $value2= $_GET['value2'];
+  }
   if(isset($_GET['mode'])){
     
   }
@@ -42,7 +46,8 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value'])){
         'id' => $id,
         'type'=> $type,
         'time' => $time,
-        'value' => $value,
+        'value1' => $value1,
+        'value2' => $value2,
         'work' => "0"
       )
     );
@@ -65,7 +70,8 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value'])){
         'id' => $id,
         'type'=> $type,
         'time' => $time,
-        'value' => $value,
+        'value1' => $value1,
+        'value2' => $value2,
         'work' => "0"
       )
     );
