@@ -79,6 +79,7 @@ function sent($messages) {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 if(isset($_GET['bot'])){
  if(isset($_GET['message'])){
+ 
   $message = $_GET['message'];
   node_sent($messages,"Ue5cca733dd1b12980bc07e47ba4c503c");
   
@@ -92,7 +93,27 @@ if(isset($_GET['bot'])){
   
  }else{
   if(strpos($_msg, 'บันทึกผู้ใช้งานใหม่') !== false){
-  
+      $uurl = 'https://api.mlab.com/api/1/databases/line_bot/collections/user?apiKey='.$api_key.'';     
+      $uisData=sizeof($udata);
+      $newData = json_encode(
+        array(
+          '_id' => array('$oid' => '0'),
+          'id' => '0',
+          'uid'=> $arrJson['events'][0]['source']['userId'];
+        )
+      );
+      $opts = array(
+        'http' => array(
+            'method' => "POST",
+            'header' => "Content-type: application/json",
+            'content' => $newData
+         )
+      );
+      $context = stream_context_create($opts);
+      $returnValue = file_get_contents($uurl,false,$context);
+      $message = array();
+      $message[0] = 'ทำการบันทึกเรียบร้อยค่ะ';      
+      sent($message);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
   }else{
    if (strpos($_msg, 'สอน') !== false) {
