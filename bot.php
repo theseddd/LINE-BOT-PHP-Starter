@@ -40,7 +40,7 @@ function node_sent($messages) {
     $arrPostData = array();
     $arrPostData['to'] = $user;
     $arrPostData['messages'][0]['type'] = "text";
-    $arrPostData['messages'][0]['text'] = "นี้คือการทดสอบ Push Message";
+    $arrPostData['messages'][0]['text'] = (string)$messages;
 
 
     $ch = curl_init();
