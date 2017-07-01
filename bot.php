@@ -91,8 +91,10 @@ if(isset($_GET['bot'])){
  if(strpos($_msg, 'อุณหภูมิ')!== false||strpos($_msg, 'ตรวจสอบ')!== false||strpos($_msg, 'หลอดไฟ')!== false||strpos($_msg, 'แอร์')!== false){
   
  }else{
+  if((string)$_msg = "บันทึกผู้ใช้งานใหม่"){
+  
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-  if (strpos($_msg, 'สอน') !== false) {
+  }else if (strpos($_msg, 'สอน') !== false) {
     if (strpos($_msg, 'สอน') !== false) {
       $x_tra = str_replace("สอน","", $_msg);
       $pieces = explode("|", $x_tra);
