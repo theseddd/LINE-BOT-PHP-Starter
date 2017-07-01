@@ -18,32 +18,45 @@ $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collect
 $data = json_decode($json);
 $isData=sizeof($data);
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function node_sent($messages,$user) {
-$strAccessToken = "9KexXFutJpVWfiA12ZrAIZunVdn6qH6Vi3mOdVYC9ojtWXSma5jbx14jv9eZebEA0cgEDbSqGYxNsb3NpKpGB+FtCVb8ketT6hmEamLvl9pIyv9UFKDQQkF5N2Zb2e/husUH9dAwX1Yrx4XRm+EuPgdB04t89/1O/w1cDnyilFU=";
- 
-$strUrl = "https://api.line.me/v2/bot/message/push";
- 
-$arrHeader = array();
-$arrHeader[] = "Content-Type: application/json";
-$arrHeader[] = "Authorization: Bearer {$strAccessToken}";
- 
-$arrPostData = array();
-$arrPostData['to'] = $user;
-$arrPostData['messages'][0]['type'] = "text";
-$arrPostData['messages'][0]['text'] = "นี้คือการทดสอบ Push Message";
- 
- 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL,$strUrl);
-curl_setopt($ch, CURLOPT_HEADER, false);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, $arrHeader);
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arrPostData));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-$result = curl_exec($ch);
-curl_close ($ch);
- 
+function node_sent($messages) {
+ $api_key="pTxcx5ycWTLaFNILWW59S9eMdSiDHQrz";
+ $url = 'https://api.mlab.com/api/1/databases/line_bot/collections/user?apiKey='.$api_key.'';
+ $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/user?apiKey='.$api_key.'&q={"_id":"0"}');
+ $data = json_decode($json);
+ $isData=sizeof($data);
+
+ $strAccessToken = "9KexXFutJpVWfiA12ZrAIZunVdn6qH6Vi3mOdVYC9ojtWXSma5jbx14jv9eZebEA0cgEDbSqGYxNsb3NpKpGB+FtCVb8ketT6hmEamLvl9pIyv9UFKDQQkF5N2Zb2e/husUH9dAwX1Yrx4XRm+EuPgdB04t89/1O/w1cDnyilFU=";
+
+ $strUrl = "https://api.line.me/v2/bot/message/push";
+ if($isData >0){
+    $user;
+    foreach($data as $rec){      
+     $user = $rec->uid;
+    } 
+    $arrHeader = array();
+    $arrHeader[] = "Content-Type: application/json";
+    $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
+
+    $arrPostData = array();
+    $arrPostData['to'] = $user;
+    $arrPostData['messages'][0]['type'] = "text";
+    $arrPostData['messages'][0]['text'] = "นี้คือการทดสอบ Push Message";
+
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL,$strUrl);
+    curl_setopt($ch, CURLOPT_HEADER, false);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $arrHeader);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arrPostData));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    $result = curl_exec($ch);
+    curl_close ($ch);
+
+ }else{
+
+ }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function sent($messages) {
@@ -81,7 +94,7 @@ if(isset($_GET['bot'])){
  if(isset($_GET['message'])){
  
   $message = $_GET['message'];
-  node_sent($messages,"Ue5cca733dd1b12980bc07e47ba4c503c");
+  node_sent($messages);
   
  }else{
 
