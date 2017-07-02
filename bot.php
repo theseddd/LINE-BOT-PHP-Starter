@@ -387,7 +387,7 @@ if(isset($_GET['bot'])){
        sent($message);
       }
     }
-   }
+   
   }else{
    if(strpos($_msg, 'คำสั่งทั้งหมด') !== false){
        $messagess = array();
@@ -416,7 +416,7 @@ if(isset($_GET['bot'])){
        sent($message);
     }
    }
-    
+   }
     
    }
   }
