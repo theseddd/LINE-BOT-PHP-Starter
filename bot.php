@@ -302,7 +302,7 @@ if(isset($_GET['bot'])){
   }else{
    if (strpos($_msg, 'ปิดหลอดไฟ[') !== false||strpos($_msg, 'เปิดหลอดไฟ[') !== false||strpos($_msg, 'ปิดแอร์[') !== false||strpos($_msg, 'เปิดแอร์[') !== false){
     
-   }else{
+   }
    if (strpos($_msg, 'สอน[') !== false||strpos($_msg, 'เปลี่ยนชื่ออุปกรณ์[') !== false) {
     if (strpos($_msg, 'สอน[') !== false && strpos($_msg, 'เปลี่ยนชื่ออุปกรณ์[') == false) {
       $x_tra = str_replace("สอน","", $_msg);
@@ -382,7 +382,7 @@ if(isset($_GET['bot'])){
        sent($message);
       }
     }
-   }
+   
   }else{
    if(strpos($_msg, 'คำสั่งทั้งหมด') !== false){
        $messagess = array();
