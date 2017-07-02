@@ -87,3 +87,4 @@ if(isset($_GET['id'])&&isset($_GET['type'])&&isset($_GET['value1'])){
 
 
 ?>
+<server_main working="<?=$working?>"/>
