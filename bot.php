@@ -318,7 +318,7 @@ if(isset($_GET['bot'])){
 
       $api_key="pTxcx5ycWTLaFNILWW59S9eMdSiDHQrz";
       $url = 'https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'';
-      $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"name":"'.$id.'"}');
+      $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"name":"'.$_id.'"}');
       $data = json_decode($json);
       $isData=sizeof($data);
       $working = "0";
@@ -407,7 +407,7 @@ if(isset($_GET['bot'])){
 
       $api_key="pTxcx5ycWTLaFNILWW59S9eMdSiDHQrz";
       $url = 'https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'';
-      $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"name":"'.$id.'"}');
+      $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"name":"'.$_id.'"}');
       $data = json_decode($json);
       $isData=sizeof($data);
       $working = "0";
