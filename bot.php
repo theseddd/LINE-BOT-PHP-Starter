@@ -390,7 +390,95 @@ if(isset($_GET['bot'])){
       sent($message);
      }
     }
+    if(strpos($_msg, 'แอร์[') !== false){
+     $x_tra = str_replace("แอร์","", $_msg);
+     $pieces = explode("|", $x_tra);
+     $_id=str_replace("[","",$pieces[0]);
+     $_value=str_replace("]","",$pieces[1]);    
 
+     if($_value == 'ปิด' || $_value == 'เปิด'){
+
+      $mode = 0;
+      if($_value == 'เปิด'){
+       $mode = 1;       
+      }else{
+       $mode = 0;       
+      }
+
+      $api_key="pTxcx5ycWTLaFNILWW59S9eMdSiDHQrz";
+      $url = 'https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'';
+      $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"name":"'.$id.'"}');
+      $data = json_decode($json);
+      $isData=sizeof($data);
+      $working = "0";
+      if($isData >0){
+       $uid;
+
+       $array_ = json_decode(json_encode($data[0]),true);
+       $array__ = (string)$array_['_id']['$oid'];
+
+       $working = (string)$array_['work'];
+       $id = (string)$array_['id'];
+       $name = (string)$array_['name'];
+       $value1 = (string)$array_['value1'];
+       $value2 = (string)$array_['value2'];
+       $time = (string)$array_['time'];
+       $type = (string)$array_['type'];
+       $message = array();
+       if((int)$mode == (int)$value1){
+        $working = 0;
+        if((int)$mode == 1){        
+         $message[0] = 'แอร์เปิดอยู่แล้วค่ะ';
+        }else{
+         $message[0] = 'แอร์ปิดอยู่แล้วค่ะ';
+        }
+       }else{
+        $working = 1;
+        if((int)$mode == 1){        
+         $message[0] = 'รอแปบนึงนะค่ะ';
+         $message[1] = 'กำลังดำเนินการเปิดแอร์อยู่ค่ะ';
+        }else{
+         $message[0] = 'รอแปบนึงนะค่ะ';
+         $message[1] = 'กำลังดำเนินการปิดแอร์อยู่ค่ะ';
+        }
+       }
+
+       $newData = json_encode(
+        array(
+        '_id' => array('$oid' => $array__),
+        'id' => $id,
+        'name' => $name,
+        'type'=> $type,
+        'time' => $time,
+        'value1' => $value1,
+        'value2' => $value2,
+        'work' => $working
+        )
+       );
+
+       $opts = array(
+        'http' => array(
+        'method' => "POST",
+        'header' => "Content-type: application/json",
+        'content' => $newData
+        )
+       );
+
+       $context = stream_context_create($opts);
+       $returnValue = file_get_contents($url,false,$context);  
+       sent($message);
+      }else{
+       $message = array();
+       $message[0] = $_id.' ไม่มีอยู่ในรายชื่ออุปกรณ์ค่ะ';
+       sent($message);			
+      }
+     }else{
+      $message = array();
+      $message[0] = 'กรุณาใส่ข้อมูลให้ถูกต้องค่ะ';
+      $message[1] = 'แอร์[ชื่อ|เปิด/ปิด]';
+      sent($message);
+     }
+    }
 
    }else{
    if (strpos($_msg, 'สอน[') !== false||strpos($_msg, 'เปลี่ยนชื่ออุปกรณ์[') !== false && $f == 0) {
