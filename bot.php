@@ -301,6 +301,7 @@ if(isset($_GET['bot'])){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
   }else{
    if (strpos($_msg, 'หลอดไฟ[') !== false||strpos($_msg, 'แอร์[') !== false){
+    ///////////////////////////////////////
     if(strpos($_msg, 'หลอดไฟ[') !== false){
     $x_tra = str_replace("หลอดไฟ","", $_msg);
     $pieces = explode("|", $x_tra);
@@ -385,7 +386,7 @@ if(isset($_GET['bot'])){
       $message[1] = 'หลอดไฟ[ชื่อ|เปิด/ปิด]';
       sent($message);
      }
-    }
+    }/*
     if(strpos($_msg, 'แอร์[') !== false){
     $x_tra = str_replace("แอร์","", $_msg);
     $pieces = explode("|", $x_tra);
@@ -471,7 +472,7 @@ if(isset($_GET['bot'])){
       sent($message);
      }
     }
-    
+    */
     
     
    }else{
