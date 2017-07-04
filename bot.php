@@ -276,13 +276,12 @@ if(isset($_GET['bot'])){
       $message[$y] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบแอร์ค่ะ';
       $y++;
      }
-     $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"paper"}');
-     $data = json_decode($json);
-     $isData=sizeof($data);
-     $message = array();
+     $json4 = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"paper"}');
+     $data4 = json_decode($json4);
+     $isData4=sizeof($data4);
      $y=0;
-     if($isData>0){
-      foreach($data as $rec){      
+     if($isData4>0){
+      foreach($data4 as $rec){      
        $tid = $rec->id;
        $tname = $rec->name;
        $tvalue1 = $rec->value1;
@@ -316,10 +315,11 @@ if(isset($_GET['bot'])){
        if($tname=="-"){
         $tname = $tid;
        }
-       $message[$y] = "อุปกรณ์อุณหภูมิ รหัส".(string)$tid." ชื่อ ".(string)$tname; 
-       $y++;
+       $message[$y] += "อุปกรณ์อุณหภูมิ รหัส".(string)$tid." ชื่อ ".(string)$tname
+        ; 
+       
       }
-      
+      $y++;
      }else{
       $message[$y] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบอุณหภูมิค่ะ';
       $y++;
@@ -341,10 +341,11 @@ if(isset($_GET['bot'])){
         $tname = $tid;
        }
        $ttime = $rec->time;
-       $message[$y] = "อุปกรณ์สวิทช์หลอดไฟ รหัส".(string)$tid." ชื่อ ".(string)$tname;      
-       $y++;
+       $message[$y] += "อุปกรณ์สวิทช์หลอดไฟ รหัส".(string)$tid." ชื่อ ".(string)$tname
+        ;      
+       
       }
-      
+      $y++;
      }else{
       $message[$y] = 'ไม่มีอุปกรณ์สวิทช์หลอดไฟค่ะ';
       $y++;
@@ -366,10 +367,11 @@ if(isset($_GET['bot'])){
         $tname = $tid;
        }
        $ttime = $rec->time;
-       $message[$y] = "อุปกรณ์สวิทช์แอร์ รหัส".(string)$tid." ชื่อ ".(string)$tname;    
-       $y++;
+       $message[$y] += "อุปกรณ์สวิทช์แอร์ รหัส".(string)$tid." ชื่อ ".(string)$tname
+        ;    
+       
       }
-      
+      $y++;
      }else{
       $message[$y] = 'ไม่มีอุปกรณ์สวิทช์แอร์ค่ะ';
       $y++;
@@ -377,7 +379,6 @@ if(isset($_GET['bot'])){
      $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"paper"}');
      $data = json_decode($json);
      $isData=sizeof($data);
-     $message = array();
      $y=0;
      if($isData>0){
       foreach($data as $rec){      
@@ -389,10 +390,10 @@ if(isset($_GET['bot'])){
        if($tname=="-"){
         $tname = $tid;
        }
-       $message[$y] = "อุปกรณ์ตรวจกระดาษ รหัส".(string)$tid." ชื่อ ".(string)$tname;    
-       $y++;
+       $message[$y] += "อุปกรณ์ตรวจกระดาษ รหัส".(string)$tid." ชื่อ ".(string)$tname
+        ;          
       }
-      
+      $y++;
      }else{
       $message[$y] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบกระดาษค่ะ';
       $y++;
