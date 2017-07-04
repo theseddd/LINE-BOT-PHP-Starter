@@ -386,7 +386,7 @@ if(isset($_GET['bot'])){
        if($tname=="-"){
         $tname = $tid;
        }
-       $message[$y] += "อุปกรณ์ตรวจกระดาษ รหัส".(string)$tid." ชื่อ ".(string)$tname;       
+       $message[$y] = "อุปกรณ์ตรวจกระดาษ รหัส".(string)$tid." ชื่อ ".(string)$tname;       
        $y++;
       }
       
