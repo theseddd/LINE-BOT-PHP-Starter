@@ -300,6 +300,105 @@ if(isset($_GET['bot'])){
      } 
      sent($message);    
   }
+  if(strpos($_msg, 'ตรวจสอบรายชื่ออุปกรณ์')!== false){
+     $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"temp"}');
+     $data = json_decode($json);
+     $isData=sizeof($data);
+     $message = array();
+     $y=0;
+     if($isData>0){
+      foreach($data as $rec){      
+       $tid = $rec->id;
+       $tname = $rec->name;
+       $tvalue1 = $rec->value1;
+       $tvalue2 = $rec->value2;
+       $ttime = $rec->time;
+       if($tname=="-"){
+        $tname = $tid;
+       }
+       $message[$y] += "อุปกรณ์อุณหภูมิ รหัส".(string)$tid." ชื่อ ".(string)$tname
+        ;       
+      }
+      $y++;
+     }else{
+      $message[$y] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบอุณหภูมิค่ะ';
+      $y++;
+     } 
+     $json2 = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"lamp"}');
+     $data2 = json_decode($json2);
+     $isData=sizeof($data2);
+     if($isData>0){
+      foreach($data2 as $rec){      
+       $tid = $rec->id;
+       $tname = $rec->name;
+       $tvalue1 = $rec->value1;
+       if((string)$tvalue1 == "1"){
+        $tvalue1 = "เปิด";
+       }else{
+        $tvalue1 = "ปิด";
+       }
+       if($tname=="-"){
+        $tname = $tid;
+       }
+       $ttime = $rec->time;
+       $message[$y] += "อุปกรณ์สวิทช์หลอดไฟ รหัส".(string)$tid." ชื่อ ".(string)$tname
+        ;       
+      }
+      $y++;
+     }else{
+      $message[$y] = 'ไม่มีอุปกรณ์สวิทช์หลอดไฟค่ะ';
+      $y++;
+     } 
+     $json3 = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"air"}');
+     $data3 = json_decode($json3);
+     $isData3=sizeof($data3);
+     if($isData3>0){
+      foreach($data3 as $rec){      
+       $tid = $rec->id;
+       $tname = $rec->name;
+       $tvalue1 = $rec->value1;
+       if((string)$tvalue1 == "1"){
+        $tvalue1 = "เปิด";
+       }else{
+        $tvalue1 = "ปิด";
+       }
+       if($tname=="-"){
+        $tname = $tid;
+       }
+       $ttime = $rec->time;
+       $message[$y] += "อุปกรณ์สวิทช์แอร์ รหัส".(string)$tid." ชื่อ ".(string)$tname
+        ;       
+      }
+      $y++;
+     }else{
+      $message[$y] = 'ไม่มีอุปกรณ์สวิทช์แอร์ค่ะ';
+      $y++;
+     }
+     $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"paper"}');
+     $data = json_decode($json);
+     $isData=sizeof($data);
+     $message = array();
+     $y=0;
+     if($isData>0){
+      foreach($data as $rec){      
+       $tid = $rec->id;
+       $tname = $rec->name;
+       $tvalue1 = $rec->value1;
+       $tvalue2 = $rec->value2;
+       $ttime = $rec->time;
+       if($tname=="-"){
+        $tname = $tid;
+       }
+       $message[$y] = "อุปกรณ์ตรวจกระดาษ รหัส".(string)$tid." ชื่อ ".(string)$tname
+        ;       
+      }
+      $y++;
+     }else{
+      $message[$y] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบกระดาษค่ะ';
+      $y++;
+     } 
+     sent($message);    
+  }
   
  }else{
   $message = array();
@@ -618,6 +717,8 @@ if(isset($_GET['bot'])){
        ตรวจสอบอุณหภูมิ
        ตรวจสอบหลอดไฟ
        ตรวจสอบแอร์
+       ตรวจสอบกระดาษ
+       ตรวจสอบรายชื่ออุปกรณ์
        ตรวจสอบทั้งหมด';  
  
        sent($messagess);
