@@ -182,6 +182,29 @@ if(isset($_GET['bot'])){
      }
      sent($message);    
   }
+    if(strpos($_msg, 'ตรวจกระดาษ')!== false){
+     $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"paper"}');
+     $data = json_decode($json);
+     $isData=sizeof($data);
+     $message = array();
+     $y=0;
+     if($isData>0){
+      foreach($data as $rec){      
+       $tid = $rec->id;
+       $tname = $rec->name;
+       $tvalue1 = $rec->value1;
+       if($tname=="-"){
+        $tname = $tid;
+       }
+       $ttime = $rec->time;
+       $message[$y] = "แอร์ของ ".(string)$tname." สถานะ ".(string)$tvalue1."ค่ะ (".(string)$ttime.")";
+       $y++;
+      }
+     }else{
+      $message[0] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบแอร์ค่ะ';
+     }
+     sent($message);    
+  }
   if(strpos($_msg, 'ตรวจสอบทั้งหมด')!== false){
      $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"temp"}');
      $data = json_decode($json);
@@ -253,6 +276,28 @@ if(isset($_GET['bot'])){
       $message[$y] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบแอร์ค่ะ';
       $y++;
      }
+     $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"paper"}');
+     $data = json_decode($json);
+     $isData=sizeof($data);
+     $message = array();
+     $y=0;
+     if($isData>0){
+      foreach($data as $rec){      
+       $tid = $rec->id;
+       $tname = $rec->name;
+       $tvalue1 = $rec->value1;
+       $tvalue2 = $rec->value2;
+       $ttime = $rec->time;
+       if($tname=="-"){
+        $tname = $tid;
+       }
+       $message[$y] = "สถานะของกระดาษของ ".(string)$tname." คือ ".(string)$tvalue1." (".(string)$ttime.")";
+       $y++;
+      }
+     }else{
+      $message[$y] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบกระดาษค่ะ';
+      $y++;
+     } 
      sent($message);    
   }
   
