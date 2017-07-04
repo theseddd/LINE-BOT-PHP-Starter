@@ -316,10 +316,10 @@ if(isset($_GET['bot'])){
        if($tname=="-"){
         $tname = $tid;
        }
-       $message[$y] =+ "อุปกรณ์อุณหภูมิ รหัส".(string)$tid." ชื่อ ".(string)$tname
-        ;       
+       $message[$y] = "อุปกรณ์อุณหภูมิ รหัส".(string)$tid." ชื่อ ".(string)$tname; 
+       $y++;
       }
-      $y++;
+      
      }else{
       $message[$y] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบอุณหภูมิค่ะ';
       $y++;
@@ -341,10 +341,10 @@ if(isset($_GET['bot'])){
         $tname = $tid;
        }
        $ttime = $rec->time;
-       $message[$y] =+ "อุปกรณ์สวิทช์หลอดไฟ รหัส".(string)$tid." ชื่อ ".(string)$tname
-        ;       
+       $message[$y] = "อุปกรณ์สวิทช์หลอดไฟ รหัส".(string)$tid." ชื่อ ".(string)$tname;      
+       $y++;
       }
-      $y++;
+      
      }else{
       $message[$y] = 'ไม่มีอุปกรณ์สวิทช์หลอดไฟค่ะ';
       $y++;
@@ -366,10 +366,10 @@ if(isset($_GET['bot'])){
         $tname = $tid;
        }
        $ttime = $rec->time;
-       $message[$y] =+ "อุปกรณ์สวิทช์แอร์ รหัส".(string)$tid." ชื่อ ".(string)$tname
-        ;       
+       $message[$y] = "อุปกรณ์สวิทช์แอร์ รหัส".(string)$tid." ชื่อ ".(string)$tname;    
+       $y++;
       }
-      $y++;
+      
      }else{
       $message[$y] = 'ไม่มีอุปกรณ์สวิทช์แอร์ค่ะ';
       $y++;
@@ -389,10 +389,10 @@ if(isset($_GET['bot'])){
        if($tname=="-"){
         $tname = $tid;
        }
-       $message[$y] =+ "อุปกรณ์ตรวจกระดาษ รหัส".(string)$tid." ชื่อ ".(string)$tname
-        ;       
+       $message[$y] = "อุปกรณ์ตรวจกระดาษ รหัส".(string)$tid." ชื่อ ".(string)$tname;    
+       $y++;
       }
-      $y++;
+      
      }else{
       $message[$y] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบกระดาษค่ะ';
       $y++;
@@ -408,7 +408,8 @@ if(isset($_GET['bot'])){
       ตรวจสอบหลอดไฟ
       ตรวจสอบแอร์
       ตรวจสอบกระดาษ
-      ตรวจสอบทั้งหมด';
+      ตรวจสอบทั้งหมด
+      ตรวจสอบรายชื่ออุปกรณ์';
       //$message[2] = $arrJson['events'][0]['source']['userId'];
       sent($message);
   
