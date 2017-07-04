@@ -100,7 +100,7 @@ if(isset($_GET['bot'])){
 }else{
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
  if(strpos($_msg, 'ตรวจสอบ')!== false){
- if(strpos($_msg, 'ตรวจสอบกระดาษ')!== false||strpos($_msg, 'ตรวจสอบอุณหภูมิ')!== false||strpos($_msg, 'ตรวจสอบทั้งหมด')!== false||strpos($_msg, 'ตรวจสอบหลอดไฟ')!== false||strpos($_msg, 'ตรวจสอบแอร์')!== false){
+ if(strpos($_msg, 'ตรวจสอบรายชื่ออุปกรณ์')!== false||strpos($_msg, 'ตรวจสอบกระดาษ')!== false||strpos($_msg, 'ตรวจสอบอุณหภูมิ')!== false||strpos($_msg, 'ตรวจสอบทั้งหมด')!== false||strpos($_msg, 'ตรวจสอบหลอดไฟ')!== false||strpos($_msg, 'ตรวจสอบแอร์')!== false){
   $y=0;
   if(strpos($_msg, 'ตรวจสอบอุณหภูมิ')!== false){
      $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"temp"}');
