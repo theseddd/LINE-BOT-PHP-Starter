@@ -371,7 +371,7 @@ if(isset($_GET['bot'])){
        if($tname=="-"){
         $tname = $tid;
        }
-       $message[$y] = "อุปกรณ์อุณหภูมิ รหัส".(string)$tid." ชื่อ ".(string)$tname; 
+       $message[$y] = "อุปกรณ์อุณหภูมิ รหัส ".(string)$tid." ชื่อ ".(string)$tname; 
        $y++;
       }
       
@@ -396,7 +396,7 @@ if(isset($_GET['bot'])){
         $tname = $tid;
        }
        $ttime = $rec->time;
-       $message[$y] = "อุปกรณ์สวิทช์หลอดไฟ รหัส".(string)$tid." ชื่อ ".(string)$tname;      
+       $message[$y] = "อุปกรณ์สวิทช์หลอดไฟ รหัส ".(string)$tid." ชื่อ ".(string)$tname;      
        $y++;
       }      
      }else{
@@ -420,7 +420,7 @@ if(isset($_GET['bot'])){
         $tname = $tid;
        }
        $ttime = $rec->time;
-       $message[$y] = "อุปกรณ์สวิทช์แอร์ รหัส".(string)$tid." ชื่อ ".(string)$tname;    
+       $message[$y] = "อุปกรณ์สวิทช์แอร์ รหัส ".(string)$tid." ชื่อ ".(string)$tname;    
        $y++;
       }
       
@@ -442,7 +442,7 @@ if(isset($_GET['bot'])){
        if($tname=="-"){
         $tname = $tid;
        }
-       $message[$y] = "อุปกรณ์ตรวจกระดาษ รหัส".(string)$tid." ชื่อ ".(string)$tname;       
+       $message[$y] = "อุปกรณ์ตรวจกระดาษ รหัส ".(string)$tid." ชื่อ ".(string)$tname;       
        $y++;
       }
       
