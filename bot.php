@@ -91,9 +91,65 @@ function sent($messages) {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 if(isset($_GET['bot'])){
- if(isset($_GET['message'])){
- 
+ if(isset($_GET['message'])){ 
   $messages = $_GET['message'];
+  $mass = "";
+  $massn = "";
+  $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"id":"temp"}');
+     $data = json_decode($json);
+     $isData=sizeof($data);
+     if($isData>0){
+      foreach($data as $rec){      
+       $tid = $rec->id;
+       $tname = $rec->name;
+       if(strpos($messages, $tid)!== false){
+        $mass = $tname;
+        $massn = $tid;
+       }
+      }
+     }
+  $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"id":"lamp"}');
+     $data = json_decode($json);
+     $isData=sizeof($data);
+     if($isData>0){
+      foreach($data as $rec){      
+       $tid = $rec->id;
+       $tname = $rec->name;
+       if(strpos($messages, $tid)!== false){
+        $mass = $tname;
+        $massn = $tid;
+       }
+      }
+     }
+  $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"id":"air"}');
+     $data = json_decode($json);
+     $isData=sizeof($data);
+     if($isData>0){
+      foreach($data as $rec){      
+       $tid = $rec->id;
+       $tname = $rec->name;
+       if(strpos($messages, $tid)!== false){
+        $mass = $tname;
+        $massn = $tid;
+       }
+      }
+     }
+  $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"id":"paper"}');
+     $data = json_decode($json);
+     $isData=sizeof($data);
+     if($isData>0){
+      foreach($data as $rec){      
+       $tid = $rec->id;
+       $tname = $rec->name;
+       if(strpos($messages, $tid)!== false){
+        $mass = $tname;
+        $massn = $tid;
+       }
+      }
+     }
+
+  $pieces = explode($massn, $messages);
+  $messages = $pieces[0].$mass.$pieces[1];
   node_sent($messages);
   
  }
