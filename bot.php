@@ -95,7 +95,7 @@ if(isset($_GET['bot'])){
   $messages = $_GET['message'];
   $mass = "";
   $massn = "";
-  $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"id":"temp"}');
+  $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"temp"}');
      $data = json_decode($json);
      $isData=sizeof($data);
      if($isData>0){
@@ -108,7 +108,7 @@ if(isset($_GET['bot'])){
        }
       }
      }
-  $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"id":"lamp"}');
+  $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"lamp"}');
      $data = json_decode($json);
      $isData=sizeof($data);
      if($isData>0){
@@ -121,7 +121,7 @@ if(isset($_GET['bot'])){
        }
       }
      }
-  $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"id":"air"}');
+  $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"air"}');
      $data = json_decode($json);
      $isData=sizeof($data);
      if($isData>0){
@@ -134,7 +134,7 @@ if(isset($_GET['bot'])){
        }
       }
      }
-  $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"id":"paper"}');
+  $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"paper"}');
      $data = json_decode($json);
      $isData=sizeof($data);
      if($isData>0){
