@@ -238,7 +238,7 @@ if(isset($_GET['bot'])){
      }
      sent($message);    
   }
-    if(strpos($_msg, 'ตรวจกระดาษ')!== false){
+    if(strpos($_msg, 'ตรวจสอบกระดาษ')!== false){
      $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"paper"}');
      $data = json_decode($json);
      $isData=sizeof($data);
