@@ -358,7 +358,7 @@ if(isset($_GET['bot'])){
   if(strpos($_msg, 'ตรวจสอบรายชื่ออุปกรณ์')!== false){
      $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"temp"}');
      $data = json_decode($json);
-     $isData=sizeof($data);
+     $isData = sizeof($data);
      $message = array();
      $y=0;
      if($isData>0){
@@ -371,10 +371,10 @@ if(isset($_GET['bot'])){
        if($tname=="-"){
         $tname = $tid;
        }
-       $message[$y] = "อุปกรณ์อุณหภูมิ รหัส ".(string)$tid." ชื่อ ".(string)$tname; 
-       $y++;
+       $message[$y] .= "อุปกรณ์อุณหภูมิ รหัส ".(string)$tid." ชื่อ ".(string)$tname
+        ;       
       }
-      
+      $y++;
      }else{
       $message[$y] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบอุณหภูมิค่ะ';
       $y++;
@@ -396,9 +396,11 @@ if(isset($_GET['bot'])){
         $tname = $tid;
        }
        $ttime = $rec->time;
-       $message[$y] = "อุปกรณ์สวิทช์หลอดไฟ รหัส ".(string)$tid." ชื่อ ".(string)$tname;      
-       $y++;
-      }      
+       $message[$y] .= "อุปกรณ์สวิทช์หลอดไฟ รหัส ".(string)$tid." ชื่อ ".(string)$tname
+        ;      
+       
+      }    
+      $y++;
      }else{
       $message[$y] = 'ไม่มีอุปกรณ์สวิทช์หลอดไฟค่ะ';
       $y++;
@@ -420,10 +422,11 @@ if(isset($_GET['bot'])){
         $tname = $tid;
        }
        $ttime = $rec->time;
-       $message[$y] = "อุปกรณ์สวิทช์แอร์ รหัส ".(string)$tid." ชื่อ ".(string)$tname;    
-       $y++;
+       $message[$y] .= "อุปกรณ์สวิทช์แอร์ รหัส ".(string)$tid." ชื่อ ".(string)$tname
+        ;    
+       
       }
-      
+      $y++;
      }else{
       $message[$y] = 'ไม่มีอุปกรณ์สวิทช์แอร์ค่ะ';
       $y++;
@@ -442,10 +445,11 @@ if(isset($_GET['bot'])){
        if($tname=="-"){
         $tname = $tid;
        }
-       $message[$y] = "อุปกรณ์ตรวจกระดาษ รหัส ".(string)$tid." ชื่อ ".(string)$tname;       
-       $y++;
+       $message[$y] .= "อุปกรณ์ตรวจกระดาษ รหัส ".(string)$tid." ชื่อ ".(string)$tname
+        ;       
+       
       }
-      
+      $y++;
      }else{
       $message[$y] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบกระดาษค่ะ';
       $y++;
