@@ -356,10 +356,13 @@ if(isset($_GET['bot'])){
      sent($message);    
   }
   if(strpos($_msg, 'ตรวจสอบรายชื่ออุปกรณ์')!== false){
+   
      $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"temp"}');
      $data = json_decode($json);
      $isData = sizeof($data);
      $message = array();
+     $message[$y] .= "รายชื่ออุปกรณ์มีดังนี้ค่ะ
+     ";
      $y=0;
      if($isData>0){
       foreach($data as $rec){      
@@ -376,8 +379,8 @@ if(isset($_GET['bot'])){
       }
       //$y++;
      }else{
-      $message[$y] .= 'ไม่มีอุปกรณ์สำหรับตรวจสอบอุณหภูมิค่ะ
-      ';
+      $message[$y] .= "ไม่มีอุปกรณ์สำหรับตรวจสอบอุณหภูมิค่ะ
+      ";
       //$y++;
      } 
      $json2 = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"lamp"}');
@@ -403,8 +406,8 @@ if(isset($_GET['bot'])){
       }    
       //$y++;
      }else{
-      $message[$y] .= 'ไม่มีอุปกรณ์สวิทช์หลอดไฟค่ะ
-      ';
+      $message[$y] .= "ไม่มีอุปกรณ์สวิทช์หลอดไฟค่ะ
+      ";
       //$y++;
      } 
      $json3 = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"air"}');
@@ -430,8 +433,8 @@ if(isset($_GET['bot'])){
       }
      // $y++;
      }else{
-      $message[$y] .= 'ไม่มีอุปกรณ์สวิทช์แอร์ค่ะ
-      ';
+      $message[$y] .= "ไม่มีอุปกรณ์สวิทช์แอร์ค่ะ
+      ";
       //$y++;
      }
      $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"paper"}');
@@ -454,8 +457,8 @@ if(isset($_GET['bot'])){
       }
       //$y++;
      }else{
-      $message[$y] .= 'ไม่มีอุปกรณ์สำหรับตรวจสอบกระดาษค่
-      ะ';
+      $message[$y] .= "ไม่มีอุปกรณ์สำหรับตรวจสอบกระดาษค่ะ
+      ";
       //$y++;
      } 
      sent($message);    
