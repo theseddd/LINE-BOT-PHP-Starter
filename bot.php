@@ -121,7 +121,7 @@ if(isset($_GET['bot'])){
        }
       }
      }
-  $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"air"}');
+  $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"plug"}');
      $data = json_decode($json);
      $isData=sizeof($data);
      if($isData>0){
@@ -156,7 +156,7 @@ if(isset($_GET['bot'])){
 }else{
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
  if(strpos($_msg, 'ตรวจสอบ')!== false){
- if(strpos($_msg, 'ตรวจสอบรายชื่ออุปกรณ์')!== false||strpos($_msg, 'ตรวจสอบกระดาษ')!== false||strpos($_msg, 'ตรวจสอบอุณหภูมิ')!== false||strpos($_msg, 'ตรวจสอบทั้งหมด')!== false||strpos($_msg, 'ตรวจสอบหลอดไฟ')!== false||strpos($_msg, 'ตรวจสอบแอร์')!== false){
+ if(strpos($_msg, 'ตรวจสอบรายชื่ออุปกรณ์')!== false||strpos($_msg, 'ตรวจสอบกระดาษ')!== false||strpos($_msg, 'ตรวจสอบอุณหภูมิ')!== false||strpos($_msg, 'ตรวจสอบทั้งหมด')!== false||strpos($_msg, 'ตรวจสอบหลอดไฟ')!== false||strpos($_msg, 'ตรวจสอบปลั๊กไฟ')!== false){
   $y=0;
   if(strpos($_msg, 'ตรวจสอบอุณหภูมิ')!== false){
      $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"temp"}');
@@ -210,8 +210,8 @@ if(isset($_GET['bot'])){
      } 
      sent($message);    
   }
-  if(strpos($_msg, 'ตรวจสอบแอร์')!== false){
-     $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"air"}');
+  if(strpos($_msg, 'ตรวจสอบปลั๊กไฟ')!== false){
+     $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"plug"}');
      $data = json_decode($json);
      $isData=sizeof($data);
      $message = array();
@@ -230,11 +230,11 @@ if(isset($_GET['bot'])){
         $tname = $tid;
        }
        $ttime = $rec->time;
-       $message[$y] = "แอร์ของ ".(string)$tname." สถานะ ".(string)$tvalue1."ค่ะ (".(string)$ttime.")";
+       $message[$y] = "ปลั๊กไฟของ ".(string)$tname." สถานะ ".(string)$tvalue1."ค่ะ (".(string)$ttime.")";
        $y++;
       }
      }else{
-      $message[0] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบแอร์ค่ะ';
+      $message[0] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบปลั๊กไฟค่ะ';
      }
      sent($message);    
   }
@@ -253,11 +253,11 @@ if(isset($_GET['bot'])){
         $tname = $tid;
        }
        $ttime = $rec->time;
-       $message[$y] = "แอร์ของ ".(string)$tname." สถานะ ".(string)$tvalue1."ค่ะ (".(string)$ttime.")";
+       $message[$y] = "กระดาษของ ".(string)$tname." สถานะ ".(string)$tvalue1."ค่ะ (".(string)$ttime.")";
        $y++;
       }
      }else{
-      $message[0] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบแอร์ค่ะ';
+      $message[0] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบกระดาษค่ะ';
      }
      sent($message);    
   }
@@ -316,7 +316,7 @@ if(isset($_GET['bot'])){
       ';
       //$y++;
      } 
-     $json3 = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"air"}');
+     $json3 = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"plug"}');
      $data3 = json_decode($json3);
      $isData3=sizeof($data3);
      if($isData3>0){
@@ -333,12 +333,12 @@ if(isset($_GET['bot'])){
         $tname = $tid;
        }
        $ttime = $rec->time;
-       $message[$y] .= 'แอร์ของ '.(string)$tname.' สถานะ '.(string)$tvalue1.'ค่ะ ('.(string)$ttime.')
+       $message[$y] .= 'ปลั๊กไฟของ '.(string)$tname.' สถานะ '.(string)$tvalue1.'ค่ะ ('.(string)$ttime.')
        ';
        //$y++;
       }
      }else{
-      $message[$y] .= 'ไม่มีอุปกรณ์สำหรับตรวจสอบแอร์ค่ะ
+      $message[$y] .= 'ไม่มีอุปกรณ์สำหรับตรวจสอบปลั๊กไฟค่ะ
       ';
       //$y++;
      }
@@ -420,7 +420,7 @@ if(isset($_GET['bot'])){
       ";
       //$y++;
      } 
-     $json3 = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"air"}');
+     $json3 = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"plug"}');
      $data3 = json_decode($json3);
      $isData3=sizeof($data3);
      if($isData3>0){
@@ -437,13 +437,13 @@ if(isset($_GET['bot'])){
         $tname = $tid;
        }
        $ttime = $rec->time;
-       $message[$y] .= "อุปกรณ์สวิทช์แอร์ รหัส ".(string)$tid." ชื่อ ".(string)$tname."
+       $message[$y] .= "อุปกรณ์สวิทช์ปลั๊กไฟ รหัส ".(string)$tid." ชื่อ ".(string)$tname."
        ";    
        
       }
      // $y++;
      }else{
-      $message[$y] .= "ไม่มีอุปกรณ์สวิทช์แอร์ค่ะ
+      $message[$y] .= "ไม่มีอุปกรณ์สวิทช์ปลั๊กไฟค่ะ
       ";
       //$y++;
      }
@@ -520,7 +520,7 @@ if(isset($_GET['bot'])){
    
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
   }else{
-   if (strpos($_msg, 'หลอดไฟ[') !== false||strpos($_msg, 'แอร์[') !== false){
+   if (strpos($_msg, 'หลอดไฟ[') !== false||strpos($_msg, 'ปลั๊กไฟ[') !== false){
     if(strpos($_msg, 'หลอดไฟ[') !== false){
      $x_tra = str_replace("หลอดไฟ","", $_msg);
      $pieces = explode("|", $x_tra);
@@ -610,8 +610,8 @@ if(isset($_GET['bot'])){
       sent($message);
      }
     }
-    if(strpos($_msg, 'แอร์[') !== false){
-     $x_tra = str_replace("แอร์","", $_msg);
+    if(strpos($_msg, 'ปลั๊กไฟ[') !== false){
+     $x_tra = str_replace("ปลั๊กไฟ","", $_msg);
      $pieces = explode("|", $x_tra);
      $_id=str_replace("[","",$pieces[0]);
      $_value=str_replace("]","",$pieces[1]);    
@@ -648,18 +648,18 @@ if(isset($_GET['bot'])){
        if((int)$mode == (int)$value1){
         $working = 0;
         if((int)$mode == 1){        
-         $message[0] = 'แอร์เปิดอยู่แล้วค่ะ';
+         $message[0] = 'ปลั๊กไฟเปิดอยู่แล้วค่ะ';
         }else{
-         $message[0] = 'แอร์ปิดอยู่แล้วค่ะ';
+         $message[0] = 'ปลั๊กไฟปิดอยู่แล้วค่ะ';
         }
        }else{
         $working = 1;
         if((int)$mode == 1){        
          $message[0] = 'รอแปบนึงนะค่ะ';
-         $message[1] = 'กำลังดำเนินการเปิดแอร์อยู่ค่ะ';
+         $message[1] = 'กำลังดำเนินการเปิดปลั๊กไฟอยู่ค่ะ';
         }else{
          $message[0] = 'รอแปบนึงนะค่ะ';
-         $message[1] = 'กำลังดำเนินการปิดแอร์อยู่ค่ะ';
+         $message[1] = 'กำลังดำเนินการปิดปลั๊กไฟอยู่ค่ะ';
         }
        }
 
@@ -695,7 +695,7 @@ if(isset($_GET['bot'])){
      }else{
       $message = array();
       $message[0] = 'กรุณาใส่ข้อมูลให้ถูกต้องค่ะ';
-      $message[1] = 'แอร์[ชื่อ|เปิด/ปิด]';
+      $message[1] = 'ปลั๊กไฟ[ชื่อ|เปิด/ปิด]';
       sent($message);
      }
     }
@@ -788,10 +788,10 @@ if(isset($_GET['bot'])){
        สอน[คำถาม|คำตอบ] 
        เปลี่ยนชื่ออุปกรณ์[รหัส|ชื่อใหม่]
        หลอดไฟ[ชื่ออุปกรณ์|เปิด/ปิด]
-       แอร์[ชื่ออุปกรณ์|เปิด/ปิด]
+       ปลั๊กไฟ[ชื่ออุปกรณ์|เปิด/ปิด]
        ตรวจสอบอุณหภูมิ
        ตรวจสอบหลอดไฟ
-       ตรวจสอบแอร์
+       ตรวจสอบปลั๊กไฟ
        ตรวจสอบกระดาษ
        ตรวจสอบรายชื่ออุปกรณ์
        ตรวจสอบทั้งหมด';  
