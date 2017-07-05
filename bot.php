@@ -371,13 +371,14 @@ if(isset($_GET['bot'])){
        if($tname=="-"){
         $tname = $tid;
        }
-       $message[$y] .= "อุปกรณ์อุณหภูมิ รหัส ".(string)$tid." ชื่อ ".(string)$tname
-        ;       
+       $message[$y] .= "อุปกรณ์อุณหภูมิ รหัส ".(string)$tid." ชื่อ ".(string)$tname."
+       ";    
       }
-      $y++;
+      //$y++;
      }else{
-      $message[$y] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบอุณหภูมิค่ะ';
-      $y++;
+      $message[$y] .= 'ไม่มีอุปกรณ์สำหรับตรวจสอบอุณหภูมิค่ะ
+      ';
+      //$y++;
      } 
      $json2 = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"lamp"}');
      $data2 = json_decode($json2);
@@ -396,14 +397,15 @@ if(isset($_GET['bot'])){
         $tname = $tid;
        }
        $ttime = $rec->time;
-       $message[$y] .= "อุปกรณ์สวิทช์หลอดไฟ รหัส ".(string)$tid." ชื่อ ".(string)$tname
-        ;      
+       $message[$y] .= "อุปกรณ์สวิทช์หลอดไฟ รหัส ".(string)$tid." ชื่อ ".(string)$tname."
+       ";       
        
       }    
-      $y++;
+      //$y++;
      }else{
-      $message[$y] = 'ไม่มีอุปกรณ์สวิทช์หลอดไฟค่ะ';
-      $y++;
+      $message[$y] .= 'ไม่มีอุปกรณ์สวิทช์หลอดไฟค่ะ
+      ';
+      //$y++;
      } 
      $json3 = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"air"}');
      $data3 = json_decode($json3);
@@ -422,14 +424,15 @@ if(isset($_GET['bot'])){
         $tname = $tid;
        }
        $ttime = $rec->time;
-       $message[$y] .= "อุปกรณ์สวิทช์แอร์ รหัส ".(string)$tid." ชื่อ ".(string)$tname
-        ;    
+       $message[$y] .= "อุปกรณ์สวิทช์แอร์ รหัส ".(string)$tid." ชื่อ ".(string)$tname."
+       ";    
        
       }
-      $y++;
+     // $y++;
      }else{
-      $message[$y] = 'ไม่มีอุปกรณ์สวิทช์แอร์ค่ะ';
-      $y++;
+      $message[$y] .= 'ไม่มีอุปกรณ์สวิทช์แอร์ค่ะ
+      ';
+      //$y++;
      }
      $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/node?apiKey='.$api_key.'&q={"type":"paper"}');
      $data = json_decode($json);
@@ -449,10 +452,11 @@ if(isset($_GET['bot'])){
         ;       
        
       }
-      $y++;
+      //$y++;
      }else{
-      $message[$y] = 'ไม่มีอุปกรณ์สำหรับตรวจสอบกระดาษค่ะ';
-      $y++;
+      $message[$y] .= 'ไม่มีอุปกรณ์สำหรับตรวจสอบกระดาษค่
+      ะ';
+      //$y++;
      } 
      sent($message);    
   }
