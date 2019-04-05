@@ -20,7 +20,8 @@ $data = json_decode($json);
 $isData=sizeof($data);
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function node_sent($messages) {
- $api_key="pTxcx5ycWTLaFNILWW59S9eMdSiDHQrz";
+ //$api_key="pTxcx5ycWTLaFNILWW59S9eMdSiDHQrz";
+ $api_key = "n_Zp6xN387b1w-LcInV7r-GAMH4zqJjo";
  $url = 'https://api.mlab.com/api/1/databases/line_bot/collections/user?apiKey='.$api_key.'';
  $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/user?apiKey='.$api_key.'&q={"_id":"0"}');
  $data = json_decode($json);
