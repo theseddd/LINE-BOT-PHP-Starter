@@ -12,7 +12,8 @@ $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
 $_msg = $arrJson['events'][0]['message']['text'];
  
  
-$api_key="pTxcx5ycWTLaFNILWW59S9eMdSiDHQrz";
+//$api_key="pTxcx5ycWTLaFNILWW59S9eMdSiDHQrz";
+$api_key = "n_Zp6xN387b1w-LcInV7r-GAMH4zqJjo";
 $url = 'https://api.mlab.com/api/1/databases/line_bot/collections/line_bot?apiKey='.$api_key.'';
 $json = file_get_contents('https://api.mlab.com/api/1/databases/line_bot/collections/line_bot?apiKey='.$api_key.'&q={"question":"'.$_msg.'"}');
 $data = json_decode($json);
